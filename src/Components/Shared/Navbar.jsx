@@ -43,7 +43,7 @@ const Navbar = () => {
         </div>
       </div>
       {openMenu && (
-        <div className="fixed top-0 left-0 w-full">
+        <div className="fixed top-0 z-20 left-0 w-full">
           <div className="bg-white">
             <MdOutlineClose
               onClick={() => setOpenMenu(!openMenu)}

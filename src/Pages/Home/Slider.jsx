@@ -8,7 +8,7 @@ import image4 from "../../assets/SliderImage/slider-4.jpg";
 const Slider = () => {
   return (
     <div className="h-[30vh]">
-      <Carousel interval={1500} /* infiniteLoop={true} autoPlay={true} */>
+      <Carousel interval={2000} infiniteLoop={true} autoPlay={true}>
         <div className=" lg:h-[80vh]">
           <img src={image1} alt="" className="h-full"/>
         </div>

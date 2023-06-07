@@ -1,35 +1,63 @@
 import { Player } from "@lottiefiles/react-lottie-player";
 import animation from "../../../assets/animation/register-animation.json";
 import googleLogo from "../../../assets/google.png";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../Provider/AuthProvider";
+import { toast } from "react-hot-toast";
 
 const Register = () => {
   const [seePassword, setSeePassword] = useState(false);
   const [confirmError, setConfirmError] = useState("");
+  const { updateUser, createUser, signInWithGoogle } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
     console.log(data);
     const password = data.password;
     const confirmPassword = data.confirmPassword;
-    console.log(password, confirmPassword);
     if (password !== confirmPassword) {
       setConfirmError("Password doesn't Match");
       return;
     } else {
       setConfirmError("");
-      }
-    
+    }
+    //Email Password Register
+    createUser(data.email, password)
+      .then((result) => {
+        console.log(result.user);
+        updateUser(data.name, data.photoURL).then(() => {
+          reset();
+          navigate("/");
+          toast.success("Registration Successfull");
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error(error.message);
+      });
+  };
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        console.log(result.user);
+        navigate("/")
+        toast.success("Registration Successfull");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
 
   return (
-    <div className="md:flex items-center h-[90vh]">
+    <div className="md:flex items-center mt-8">
       <div className="mx-auto w-2/4  md:w-1/2">
         <Player autoplay loop src={animation}></Player>
       </div>
@@ -56,6 +84,24 @@ const Register = () => {
           {errors.name && (
             <span className="text-xs text-warning">Name is required</span>
           )}
+          {/* PhotoUrl */}
+          <div className="form-control w-full">
+            <label htmlFor="photoURL" className="label">
+              <span className="label-text">Photo URL</span>
+            </label>
+            <input
+              id="photoURL"
+              type="url"
+              placeholder="Photo URL"
+              name="photoURL"
+              className="input input-bordered w-full"
+              {...register("photoURL", { required: true })}
+            />
+          </div>
+          {errors.photoURL && (
+            <span className="text-xs text-warning">PhotoURL is required</span>
+          )}
+
           {/* Email */}
           <div className="form-control w-full">
             <label htmlFor="email" className="label">
@@ -73,6 +119,7 @@ const Register = () => {
           {errors.email && (
             <span className="text-xs text-warning">Email is required</span>
           )}
+
           {/* Password */}
           <div className="form-control w-full">
             <label htmlFor="password" className="label">
@@ -152,7 +199,10 @@ const Register = () => {
             </Link>
           </p>
         </form>
-        <div className="flex cursor-pointer bg-gray-200 items-center gap-1 justify-center mt-2 shadow-lg md:w-5/6 lg:w-3/5 mx-auto py-2 rounded-md">
+        <div
+          onClick={handleGoogleSignIn}
+          className="flex cursor-pointer bg-gray-200 items-center gap-1 justify-center mt-2 shadow-lg md:w-5/6 lg:w-3/5 mx-auto py-2 rounded-md"
+        >
           <span className="text-2xl font-semibold">Continue With</span>
           <img src={googleLogo} alt="Google Logo" className="w-7" />
         </div>

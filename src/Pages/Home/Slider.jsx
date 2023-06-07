@@ -10,19 +10,19 @@ const Slider = () => {
     <div>
       <Carousel /* interval={2000} infiniteLoop={true} autoPlay={true} */>
         <div className=" lg:h-[80vh]">
-          <img src={image1} alt="" className="h-full"/>
+          <img src={image1} alt="" className="h-full" />
         </div>
-        <div className="relative lg:h-[80vh]">
-          <img src={image2} alt="" className="h-full"/>
-          <h1 className="absolute text-blue-500 top-1/2 left-1/2  transform-translate-[-50% -50%]">
-            get your Dream{" "}
-          </h1>
-        </div>
-        <div className="lg:h-[80vh]">
-          <img src={image3} alt="" className="h-full"/>
+        <div className="relative hero-overlay lg:h-[80vh]">
+          <img src={image2} alt="" className="h-full opacity-70 " />
+          <div className="absolute top-1/2 left-1/4  transform-translate-[-50% -50%] ">
+            <h1 className="text-4xl">get your Dream </h1>
+          </div>
         </div>
         <div className="lg:h-[80vh]">
-          <img src={image4} alt="" className="h-full"/>
+          <img src={image3} alt="" className="h-full" />
+        </div>
+        <div className="lg:h-[80vh]">
+          <img src={image4} alt="" className="h-full" />
         </div>
       </Carousel>
     </div>

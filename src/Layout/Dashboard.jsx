@@ -1,9 +1,15 @@
+import { Outlet } from "react-router-dom";
 
 const Dashboard = () => {
     return (
-        <div>
-            <h3>Welcome from Dashboard</h3>
+        <div className="relative md:flex">
+      Welcome to dashboard
+      <div className="flex-1">
+        <div className="">
+          <Outlet />
         </div>
+      </div>
+    </div>
     );
 };
 

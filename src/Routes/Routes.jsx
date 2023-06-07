@@ -5,6 +5,7 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Login from "../Pages/Authentication/Login/Login";
 import Register from "../Pages/Authentication/Register/Register";
 import Dashboard from "../Layout/Dashboard";
+import AddAClass from "../Pages/Dashboard/AddAClass";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,12 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard />,
+    children: [
+      {
+        path: "/dashboard/add-a-class",
+        element: <AddAClass />,
+      },
+    ],
   },
 ]);
 

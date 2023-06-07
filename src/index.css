@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .my-btn-primary {
-  @apply bg-[#AEE2FF] px-3 py-1 font-semibold text-lg rounded-md tracking-wide hover:bg-[#B799FF] hover:text-white;
+  @apply bg-[#AEE2FF] px-3 py-1 font-semibold text-lg rounded-md tracking-wide hover:bg-[#B799FF] hover:text-white transition duration-300;
 }

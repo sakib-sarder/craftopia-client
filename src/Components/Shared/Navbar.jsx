@@ -1,12 +1,20 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo.png";
-import { FaUserAlt } from "react-icons/fa";
+import { FaSignOutAlt, FaUserAlt } from "react-icons/fa";
 import { HiMenuAlt1 } from "react-icons/hi";
 import { MdOutlineClose } from "react-icons/md";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
   return (
     <div className="relative">
       <div className="w-full px-3 md:px-8 lg:px-24 flex items-center justify-between py-3 shadow-md">
@@ -26,14 +34,29 @@ const Navbar = () => {
             <li className="hover:text-neutral-600">
               <NavLink to="/classes">Classes</NavLink>
             </li>
-            <li className="hover:text-neutral-600">
-              <NavLink to="/dashboard">Dashboard</NavLink>
-            </li>
+            {user && (
+              <li className="hover:text-neutral-600">
+                <NavLink to="/dashboard">Dashboard</NavLink>
+              </li>
+            )}
           </ul>
         </div>
         <div className="flex items-center gap-2">
-          <button className="my-btn-primary">Logout</button>
-          <FaUserAlt className="hidden md:block" />
+          {user ? (
+            <>
+              <button
+                onClick={handleLogOut}
+                className="my-btn-primary flex items-center gap-1"
+              >
+                <span>Logout</span> <FaSignOutAlt />
+              </button>
+              <FaUserAlt className="hidden md:block" />
+            </>
+          ) : (
+            <Link to="/login">
+              <button className="my-btn-primary">Login</button>
+            </Link>
+          )}
           {!openMenu && (
             <HiMenuAlt1
               onClick={() => setOpenMenu(!openMenu)}

@@ -5,6 +5,7 @@ import {
   getAuth,
   onAuthStateChanged,
   signInWithPopup,
+  signOut,
   updateProfile,
 } from "firebase/auth";
 import app from "../Firebase/Firebase.config";
@@ -47,12 +48,18 @@ const AuthProvider = ({ children }) => {
     });
   };
 
+  const logOut = () => {
+    setLoading(true);
+    return signOut(auth);
+  };
+
   const authInfo = {
     user,
     loading,
     createUser,
     updateUser,
     signInWithGoogle,
+    logOut
   };
   console.log("current user",user);
   return (

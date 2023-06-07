@@ -1,8 +1,17 @@
-const AddRoomForm = ({handleAddClass}) => {
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
+
+const AddRoomForm = ({ handleAddClass }) => {
+  const { user } = useContext(AuthContext);
   return (
     <div className="w-full min-h-[100vh] flex justify-center items-center text-gray-800 rounded-xl bg-[#E6FFFD] px-2 md:px-0">
-      <form onSubmit={handleAddClass} className="w-full md:w-3/5 bg-[#ACBCFF] border p-4 rounded-md shadow-lg">
-        <h1 className="text-3xl text-center mb-3 font-bold">Please Add a Class!</h1>
+      <form
+        onSubmit={handleAddClass}
+        className="w-full md:w-3/5 bg-[#ACBCFF] border p-4 rounded-md shadow-lg"
+      >
+        <h1 className="text-3xl text-center mb-3 font-bold">
+          Please Add a Class!
+        </h1>
         <div className="">
           <div className="space-y-6"></div>
           <div className="space-y-6">
@@ -77,8 +86,9 @@ const AddRoomForm = ({handleAddClass}) => {
                   name="instructorName"
                   id="instructorName"
                   type="text"
+                  defaultValue={user?.displayName}
                   placeholder="Instructor Name"
-                  required
+                  readOnly
                 />
               </div>
 
@@ -90,14 +100,15 @@ const AddRoomForm = ({handleAddClass}) => {
                   id="instructorEmail"
                   type="email"
                   placeholder="Instructor Email"
-                  required
+                  readOnly
+                  defaultValue={user?.email}
                 />
               </div>
             </div>
             <input
               type="submit"
               value="Add Class"
-              className="my-btn-primary w-full"
+              className="my-btn-primary w-full cursor-pointer"
             />
           </div>
         </div>

@@ -1,6 +1,11 @@
+// import axios from "axios";
+import axios from "axios";
 import AddClassForm from "../../Components/Dashboard/AddClassForm";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const AddAClass = () => {
+    const navigate = useNavigate()
   const handleAddClass = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -26,16 +31,29 @@ const AddAClass = () => {
         const addedClass = {
           className,
           classImage: data.data.display_url,
-          price,
-          totalSeat,
+          price: parseFloat(price),
+          totalSeat: parseInt(totalSeat),
           instructorName,
           instructorEmail,
           status: "pending",
-          };
-          console.log(addedClass);
+          enrolled: 0,
+        };
+        axios
+          .post(`${import.meta.env.VITE_API_URL}/classes`, {
+            addedClass,
+          })
+          .then((res) => {
+            console.log(res.data);
+            if (res.data.insertedId) {
+                toast.success("Class Added Successfully");
+                navigate("/")
+            }
+          })
+          .catch((error) => {
+            toast.error(error.message);
+          });
       });
   };
-  // console.log(import.meta.env.VITE_IMGBB_API_KEY);
   return (
     <div>
       <AddClassForm handleAddClass={handleAddClass} />

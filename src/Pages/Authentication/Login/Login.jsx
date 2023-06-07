@@ -39,7 +39,7 @@ const Login = () => {
             />
           </div>
           {errors.email && (
-            <span className="text-xs text-warning">Email is requird</span>
+            <span className="text-xs text-warning">Email is required</span>
           )}
           <div className="form-control w-full">
             <label htmlFor="password" className="label">
@@ -56,8 +56,9 @@ const Login = () => {
               })}
             />
           </div>
+          {/* Password Error Message */}
           {errors.password && (
-            <span className="text-xs text-warning">Password is requird</span>
+            <span className="text-xs text-warning">Password is required</span>
           )}
           <div className="flex w-full items-center gap-2">
             <input

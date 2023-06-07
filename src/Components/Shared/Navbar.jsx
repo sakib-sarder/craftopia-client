@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo.png";
-import { FaSignOutAlt, FaUserAlt } from "react-icons/fa";
+import { FaSignOutAlt } from "react-icons/fa";
 import { HiMenuAlt1 } from "react-icons/hi";
 import { MdOutlineClose } from "react-icons/md";
 import { useContext, useState } from "react";
@@ -50,7 +50,7 @@ const Navbar = () => {
               >
                 <span>Logout</span> <FaSignOutAlt />
               </button>
-              <FaUserAlt className="hidden md:block" />
+              <img src={user?.photoURL} alt="profile" referrerPolicy="no-referrer" className="w-9 h-9 rounded-full"/>
             </>
           ) : (
             <Link to="/login">

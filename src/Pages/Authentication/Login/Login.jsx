@@ -1,19 +1,39 @@
 import { Player } from "@lottiefiles/react-lottie-player";
 import animation from "../../../assets/animation/login-animation.json";
 import googleLogo from "../../../assets/google.png";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Provider/AuthProvider";
+import { toast } from "react-hot-toast";
+import { saveUserInfo } from "../../../API/auth";
 
 const Login = () => {
   const [seePassword, setSeePassword] = useState(false);
+  const { logInWithEmilPassword, signInWithGoogle } = useContext(AuthContext);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data);
+    logInWithEmilPassword(data.email, data.password)
+      .then((result) => {
+        toast.success(`Welcome Back ${result?.user?.displayName}`);
+      })
+      .catch((error) => toast.error(error.message));
+  };
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        saveUserInfo(result?.user);
+        toast.success(`Welcome ${result?.user?.displayName}`);
+      })
+      .catch((error) => toast.error(error.message));
+  };
   return (
     <div className="md:flex items-center h-[90vh]">
       <div className="mx-auto w-2/4  md:w-1/2">
@@ -80,7 +100,10 @@ const Login = () => {
             </Link>
           </p>
         </form>
-        <div className="flex bg-gray-200 items-center gap-1 justify-center mt-2 shadow-lg md:w-3/4 lg:w-3/5 mx-auto py-2 rounded-md">
+        <div
+          onClick={handleGoogleSignIn}
+          className="flex bg-gray-200 items-center gap-1 justify-center mt-2 shadow-lg md:w-3/4 lg:w-3/5 mx-auto py-2 cursor-pointer rounded-md"
+        >
           <span className="text-2xl font-semibold">Continue With</span>
           <img src={googleLogo} alt="Google Logo" className="w-7" />
         </div>

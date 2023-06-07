@@ -4,6 +4,7 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
   updateProfile,
@@ -22,6 +23,11 @@ const AuthProvider = ({ children }) => {
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
+  };
+
+  const logInWithEmilPassword = (email, password) => {
+    setLoading(true);
+    return signInWithEmailAndPassword(auth, email, password);
   };
 
   const signInWithGoogle = () => {
@@ -59,9 +65,10 @@ const AuthProvider = ({ children }) => {
     createUser,
     updateUser,
     signInWithGoogle,
-    logOut
+    logInWithEmilPassword,
+    logOut,
   };
-  console.log("current user",user);
+  console.log("current user", user);
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );

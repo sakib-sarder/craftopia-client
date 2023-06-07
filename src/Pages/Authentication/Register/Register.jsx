@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { toast } from "react-hot-toast";
+import { saveUserInfo } from "../../../API/auth";
 
 const Register = () => {
   const [seePassword, setSeePassword] = useState(false);
@@ -34,9 +35,10 @@ const Register = () => {
       .then((result) => {
         console.log(result.user);
         updateUser(data.name, data.photoURL).then(() => {
-          reset();
+          saveUserInfo(result?.user);
           navigate("/");
           toast.success("Registration Successfull");
+          reset();
         });
       })
       .catch((error) => {
@@ -47,8 +49,9 @@ const Register = () => {
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
-        console.log(result.user);
-        navigate("/")
+        console.log(result?.user);
+        saveUserInfo(result?.user);
+        navigate("/");
         toast.success("Registration Successfull");
       })
       .catch((error) => {

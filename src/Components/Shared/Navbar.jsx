@@ -32,7 +32,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="flex items-center gap-2">
-          <button className="btn-primary">Logout</button>
+          <button className="my-btn-primary">Logout</button>
           <FaUserAlt className="hidden md:block" />
           {!openMenu && (
             <HiMenuAlt1

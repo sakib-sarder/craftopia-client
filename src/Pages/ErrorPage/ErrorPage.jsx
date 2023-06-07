@@ -15,7 +15,7 @@ const ErrorPage = () => {
         ></Player>
         <div className="text-center">
           <Link to="/">
-            <button className="btn-primary inline-flex items-center gap-2">
+            <button className="my-btn-primary inline-flex items-center gap-2">
               <AiFillHome className="text-xl" /> <span>Back To Home</span>
             </button>
           </Link>

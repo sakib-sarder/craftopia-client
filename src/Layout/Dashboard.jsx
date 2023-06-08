@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "../Components/Dashboard/Sidebar";
 import Navbar from "../Components/Shared/Navbar";
+import Footer from "../Components/Shared/Footer";
 
 const Dashboard = () => {
   return (
@@ -12,6 +13,7 @@ const Dashboard = () => {
         <div className="">
           <div className="hidden md:block"><Navbar /></div>
           <Outlet />
+          <div><Footer/></div>
         </div>
       </div>
     </div>

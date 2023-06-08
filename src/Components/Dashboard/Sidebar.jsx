@@ -2,13 +2,13 @@ import { RiBarChartHorizontalLine } from "react-icons/ri";
 import logo from "../../assets/logo.png";
 import { useContext, useState } from "react";
 import { AiTwotoneHome } from "react-icons/ai";
-import { MdOutlineSell } from "react-icons/md";
 import { GiTeacher } from "react-icons/gi";
 import { SiGoogleclassroom } from "react-icons/si";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { NavLink } from "react-router-dom";
 import { HiLogout } from "react-icons/hi";
-import StudentMenu from "./StudentMenu";
+import AdminMenu from "./AdminMenu";
+import InstructorMenu from "./InstructorMenu";
 
 const Sidebar = () => {
   const { user } = useContext(AuthContext);
@@ -30,8 +30,11 @@ const Sidebar = () => {
               src={logo}
               alt="logo"
               className="w-40 mx-auto border-b-[1px] border-b-sky-700"
-            />
+              />
           </div>
+              <div className="text-center py-2 mx-2 rounded-md mt-3 bg-[#AEE2FF]">
+                <h1 className="text-xl font-semibold">Dashboard</h1>
+              </div>
           <div className="my-6">
             <img src={user?.photoURL} alt="" className="mx-auto rounded-lg" />
             <div className="text-center text-gray-100">
@@ -43,7 +46,8 @@ const Sidebar = () => {
           </div>
           <hr />
           <div>
-            <StudentMenu />
+            {/* menus */}
+            <AdminMenu />
           </div>
           <hr />
           <div>
@@ -82,8 +86,12 @@ const Sidebar = () => {
           </button>
         </div>
       )}
+      {/* Large Device */}
       <div className="h-[100vh] hidden w-full md:block bg-[#8ea1ee]">
         <div className="h-[100vh] px-2 bg-[#8ea1ee]  mx-auto top-0 fixed z-40 md:w-3/12 lg:w-2/12">
+        <div className="text-center py-2 mx-2 rounded-md mt-3 bg-[#AEE2FF]">
+                <h1 className="text-xl font-semibold">Dashboard</h1>
+              </div>
           <div className="my-6 mx-auto">
             <img src={user?.photoURL} alt="" className="mx-auto rounded-lg" />
             <div className="text-center text-gray-100">
@@ -93,9 +101,10 @@ const Sidebar = () => {
               </p>
             </div>
           </div>
-          <hr className=""/>
+          <hr className="" />
           <div>
-            <StudentMenu />
+            {/* Dynamic Menu */}
+            <InstructorMenu />
           </div>
           <hr />
           <div>

@@ -1,6 +1,6 @@
 // import axios from "axios";
 import axios from "axios";
-import AddClassForm from "../../Components/Dashboard/AddClassForm";
+import AddClassForm from "../../../Components/Dashboard/AddClassForm";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 

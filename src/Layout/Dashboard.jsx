@@ -12,7 +12,7 @@ const Dashboard = () => {
       <div className="flex-1 md:w-9/12 lg:w-10/12">
         <div className="">
           <div className="hidden md:block"><Navbar /></div>
-          <Outlet />
+          <Outlet/>
           <div><Footer/></div>
         </div>
       </div>

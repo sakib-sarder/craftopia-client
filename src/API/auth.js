@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-hot-toast";
 
 export const saveUserInfo = (user) => {
   const currentUser = {
@@ -12,5 +13,41 @@ export const saveUserInfo = (user) => {
     })
     .then((res) => {
       console.log(res.data);
+    });
+};
+
+// set user role instructor
+export const setInstructor = (email, refetch) => {
+  const currentUser = {
+    role: "Instructor",
+  };
+  axios
+    .put(`${import.meta.env.VITE_API_URL}/users/${email}`, {
+      currentUser,
+    })
+    .then((res) => {
+      console.log(res.data);
+      if (res.data.modifiedCount > 0) {
+        toast.success("Successfully make instructor");
+        refetch();
+      }
+    });
+};
+
+// set user role instructor
+export const setAdmin = (email, refetch) => {
+  const currentUser = {
+    role: "Admin",
+  };
+  axios
+    .put(`${import.meta.env.VITE_API_URL}/users/${email}`, {
+      currentUser,
+    })
+    .then((res) => {
+      console.log(res.data);
+      if (res.data.modifiedCount > 0) {
+        toast.success("Successfully make admin");
+        refetch();
+      }
     });
 };

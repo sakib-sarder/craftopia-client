@@ -1,7 +1,9 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 
 const AddRoomForm = ({ handleAddClass }) => {
+  
+  const [imgInputText, setImgInputText] = useState("Upload Class Image");
   const { user } = useContext(AuthContext);
   return (
     <div className="w-full min-h-[100vh] flex justify-center items-center text-gray-800 rounded-xl bg-[#E6FFFD] px-2 md:px-0">
@@ -34,13 +36,14 @@ const AddRoomForm = ({ handleAddClass }) => {
                 <div className="flex flex-col w-max mx-auto text-center">
                   <label>
                     <input
+                      onChange={(e) => setImgInputText(e.target.files[0].name)}
                       className="text-sm cursor-pointer  hidden"
                       type="file"
                       name="image"
                       id="image"
                     />
                     <div className="bg-[#B799FF] text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-[purple]">
-                      Upload Class Image
+                      {imgInputText.slice(0,25)}
                     </div>
                   </label>
                 </div>

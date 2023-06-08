@@ -5,7 +5,7 @@ import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 const AddAClass = () => {
-    const navigate = useNavigate()
+  const navigate = useNavigate()
   const handleAddClass = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -46,7 +46,7 @@ const AddAClass = () => {
             console.log(res.data);
             if (res.data.insertedId) {
                 toast.success("Class Added Successfully");
-                navigate("/")
+                navigate("/dashboard/my-classes")
             }
           })
           .catch((error) => {

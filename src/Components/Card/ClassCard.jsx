@@ -1,11 +1,27 @@
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+
 const ClassCard = ({ singleClass }) => {
+  const { user } = useContext(AuthContext);
+  const { data: singleUser = {} } = useQuery({
+    queryKey: ["singleUser", user?.email],
+    queryFn: async () => {
+      const res = await axios.get(
+        `${import.meta.env.VITE_API_URL}/users/${user?.email}`
+      );
+      return res.data;
+    },
+  });
+  console.log(singleUser.role);
   return (
-    <div className="flex border flex-col justify-between shadow-md group">
-      <figure className="">
+    <div className="flex border flex-col justify-between shadow-md  md:hover:scale-105 transition rounded-md">
+      <figure className=" h-full">
         <img
           src={singleClass.classImage}
           alt="class photo"
-          className="h-full"
+          className="h-full w-full"
         />
       </figure>
       <div className="flex-grow flex-col h-full space-y-2">
@@ -15,18 +31,23 @@ const ClassCard = ({ singleClass }) => {
             Instructor: {singleClass.instructorName}
           </p>
         </div>
-        <div className="flex gap-6 justify-center">
-          <p className="font-semibold border-b-2 border-b-[#9B71EC]">
-            Price: $ {singleClass.price}
-          </p>
-          <p className="font-semibold border-b-2 border-b-[#9B71EC]">
+        <div className="ps-2">
+          <p className="font-semibold">Price: $ {singleClass.price}</p>
+          <p className="font-semibold">
             Available Seats: {singleClass.totalSeat}
           </p>
         </div>
       </div>
-        <div className="my-btn-primary mt-4 pe-0 text-center">
-          <button>Select Now</button>
-        </div>
+      <button
+        className={`my-btn-primary ${
+          singleClass.totalSeat === 0 || singleUser?.role === "Admin" || singleUser?.role === "Instructor"
+            ? "disabled opacity-50 cursor-not-allowed"
+            : ""
+        }`}
+        disabled={singleClass.totalSeat === 0 || singleUser?.role === "Admin" || singleUser?.role === "Instructor"}
+      >
+        Select Now
+      </button>
     </div>
   );
 };

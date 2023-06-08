@@ -29,7 +29,7 @@ const Navbar = () => {
               <NavLink to="/">Home</NavLink>
             </li>
             <li className="hover:text-neutral-600">
-              <NavLink to="/instructor">Instructor</NavLink>
+              <NavLink to="/instructors">Instructors</NavLink>
             </li>
             <li className="hover:text-neutral-600">
               <NavLink to="/classes">Classes</NavLink>

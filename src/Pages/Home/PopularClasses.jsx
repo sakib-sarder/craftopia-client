@@ -3,6 +3,7 @@ import axios from "axios";
 import ClassCard from "../../Components/Card/ClassCard";
 
 const PopularClasses = () => {
+  
   const { data: classes = [] } = useQuery({
     queryKey: ["classes"],
     queryFn: async () => {
@@ -16,7 +17,7 @@ const PopularClasses = () => {
         Popular Classes
       </h1>
       {classes && Array.isArray(classes) && classes.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 my-4">
+        <div className="grid  md:grid-cols-3 lg:grid-cols-4 gap-6 my-4">
           {classes.map((singleClass) => (
             <ClassCard key={singleClass._id} singleClass={singleClass} />
           ))}

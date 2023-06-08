@@ -5,14 +5,36 @@ import { AiTwotoneHome } from "react-icons/ai";
 import { GiTeacher } from "react-icons/gi";
 import { SiGoogleclassroom } from "react-icons/si";
 import { AuthContext } from "../../Provider/AuthProvider";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { HiLogout } from "react-icons/hi";
 import AdminMenu from "./AdminMenu";
 import InstructorMenu from "./InstructorMenu";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import StudentMenu from "./StudentMenu";
 
 const Sidebar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const [openSidebar, setOpenSideBar] = useState(false);
+  const navigate = useNavigate();
+  const { data: currentUser = {} } = useQuery({
+    queryKey: ["user", user?.email],
+    queryFn: async () => {
+      const res = await axios.get(
+        `${import.meta.env.VITE_API_URL}/users/${user?.email}`
+      );
+      return res.data;
+    },
+  });
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        navigate("/");
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <>
       <div className="flex justify-between items-center p-2 md:hidden">
@@ -30,24 +52,33 @@ const Sidebar = () => {
               src={logo}
               alt="logo"
               className="w-40 mx-auto border-b-[1px] border-b-sky-700"
-              />
+            />
           </div>
-              <div className="text-center py-2 mx-2 rounded-md mt-3 bg-[#AEE2FF]">
-                <h1 className="text-xl font-semibold">Dashboard</h1>
-              </div>
+          <div className="text-center py-2 mx-2 rounded-md mt-3 bg-[#AEE2FF]">
+            <h1 className="text-xl font-semibold">Dashboard</h1>
+          </div>
           <div className="my-6">
-            <img src={user?.photoURL} alt="" className="mx-auto rounded-lg" />
+            <img src={user?.photoURL} alt="" className="mx-auto rounded-lg w-28" />
             <div className="text-center text-gray-100">
-              <p>Name: {user?.displayName}</p>
-              <p>
+              <p className="text-sm">Name: {user?.displayName}</p>
+              <p className="text-sm">
                 Email: <span className="hover:underline">{user?.email}</span>
               </p>
+              {currentUser.role ? (
+                <div className="uppercase py-1 mx-12 rounded-xl mt-1 tracking-wider bg-[#DD83FE]">
+                  {currentUser?.role}
+                </div>
+              ) : (
+                <div className="uppercase py-1 mx-12 rounded-xl mt-1 tracking-wider bg-[#DD83FE] font-bold text-gray-900">Student</div>
+              )}
             </div>
           </div>
           <hr />
           <div>
             {/* menus */}
-            <AdminMenu />
+            {currentUser.role === "Admin" && <AdminMenu />}
+            {currentUser.role === "Instructor" && <InstructorMenu />}
+            {!currentUser.role && <StudentMenu />}
           </div>
           <hr />
           <div>
@@ -81,7 +112,10 @@ const Sidebar = () => {
             </ul>
           </div>
           <hr className="my-4" />
-          <button className="my-btn-primary mx-auto gap-2 flex items-center">
+          <button
+            onClick={handleLogOut}
+            className="my-btn-primary mx-auto gap-2 flex items-center"
+          >
             <span>Logout</span> <HiLogout />
           </button>
         </div>
@@ -89,22 +123,31 @@ const Sidebar = () => {
       {/* Large Device */}
       <div className="h-[100vh] hidden w-full md:block bg-[#8ea1ee]">
         <div className="h-[100vh] px-2 bg-[#8ea1ee]  mx-auto top-0 fixed z-40 md:w-3/12 lg:w-2/12">
-        <div className="text-center py-2 mx-2 rounded-md mt-3 bg-[#AEE2FF]">
-                <h1 className="text-xl font-semibold">Dashboard</h1>
-              </div>
+          <div className="text-center py-2 mx-2 rounded-md mt-3 bg-[#AEE2FF]">
+            <h1 className="text-xl font-semibold">Dashboard</h1>
+          </div>
           <div className="my-6 mx-auto">
-            <img src={user?.photoURL} alt="" className="mx-auto rounded-lg" />
+            <img src={user?.photoURL} alt="" className="mx-auto rounded-lg w-28" />
             <div className="text-center text-gray-100">
               <p className="text-sm">Name: {user?.displayName}</p>
               <p className="text-sm">
                 Email: <span className="hover:underline">{user?.email}</span>
               </p>
+              {currentUser.role ? (
+                <div className="uppercase py-1 mx-12 rounded-xl mt-1 tracking-wider bg-[#DD83FE]">
+                  {currentUser?.role}
+                </div>
+              ) : (
+                <div className="uppercase py-1 mx-12 rounded-xl mt-1 tracking-wider bg-[#DD83FE] font-bold text-gray-900">Student</div>
+              )}
             </div>
           </div>
           <hr className="" />
           <div>
             {/* Dynamic Menu */}
-            <InstructorMenu />
+            {currentUser.role === "Admin" && <AdminMenu />}
+            {currentUser.role === "Instructor" && <InstructorMenu />}
+            {!currentUser.role && <StudentMenu />}
           </div>
           <hr />
           <div>

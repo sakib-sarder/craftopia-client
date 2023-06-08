@@ -14,7 +14,6 @@ const MyClasses = () => {
       return res.data;
     },
   });
-  console.log(myClasses);
   return (
     <div>
       <h1 className="text-center text-4xl tracking-wide font-bold pt-4">

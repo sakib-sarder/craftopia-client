@@ -14,7 +14,7 @@ const Slider = () => {
         </div>
         <div className="relative hero-overlay lg:h-[80vh]">
           <img src={image2} alt="" className="h-full opacity-70 " />
-          <div className="absolute top-1/2 left-1/4  transform-translate-[-50% -50%] ">
+          <div className="absolute top-1/2   w-full text-center">
             <h1 className="text-4xl">get your Dream </h1>
           </div>
         </div>

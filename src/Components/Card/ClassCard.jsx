@@ -1,6 +1,6 @@
 const ClassCard = ({ singleClass }) => {
   return (
-    <div className="flex flex-col shadow-md rounded-md group">
+    <div className="flex border flex-col justify-between shadow-md group">
       <figure className="">
         <img
           src={singleClass.classImage}
@@ -8,7 +8,7 @@ const ClassCard = ({ singleClass }) => {
           className="h-full"
         />
       </figure>
-      <div className="border flex-grow flex-col h-full space-y-2">
+      <div className="flex-grow flex-col h-full space-y-2">
         <div className="ps-2">
           <h3 className="text-xl font-semibold">{singleClass.className}</h3>
           <p className="font-semibold">
@@ -23,10 +23,10 @@ const ClassCard = ({ singleClass }) => {
             Available Seats: {singleClass.totalSeat}
           </p>
         </div>
+      </div>
         <div className="my-btn-primary mt-4 pe-0 text-center">
           <button>Select Now</button>
         </div>
-      </div>
     </div>
   );
 };

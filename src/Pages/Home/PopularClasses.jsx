@@ -3,13 +3,16 @@ import axios from "axios";
 import ClassCard from "../../Components/Card/ClassCard";
 
 const PopularClasses = () => {
-  const { data: classes = [] } = useQuery({
-    queryKey: ["classes"],
+  const { data: sortedClasses = [] } = useQuery({
+    queryKey: ["sortedClasses"],
     queryFn: async () => {
       const res = await axios.get(`${import.meta.env.VITE_API_URL}/sortedClass`);
       return res.data;
     },
   });
+  const classes = sortedClasses.filter(
+    (classes) => classes.status === "Approved"
+    );
   return (
     <div className="mt-12">
       <h1 className="text-center text-4xl -tracking-tighter font-bold">

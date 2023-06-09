@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { FaTrashAlt } from "react-icons/fa";
 import { toast } from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const MySelectedClass = () => {
   const { user } = useContext(AuthContext);
@@ -18,16 +19,33 @@ const MySelectedClass = () => {
     },
   });
   const handleDelete = (id) => {
-    axios
-      .delete(`${import.meta.env.VITE_API_URL}/selectedClasses/${id}`)
-      .then((res) => {
-        if (res.data.deletedCount > 0) {
-          refetch();
-          toast.success("Successfully Deleted");
-        }
-        console.log(res.data);
-      });
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(`${import.meta.env.VITE_API_URL}/selectedClasses/${id}`)
+          .then((res) => {
+            if (res.data.deletedCount > 0) {
+              refetch();
+              toast.success("Successfully Deleted");
+            }
+            console.log(res.data);
+          })
+          .catch((error) => {
+            console.error(error);
+            toast.error("Failed to delete");
+          });
+      }
+    });
   };
+  
   return (
     <div>
       <h1 className="text-center my-4 text-4xl">My Selected Classes</h1>

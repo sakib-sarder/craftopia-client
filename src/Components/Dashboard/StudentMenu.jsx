@@ -12,9 +12,11 @@ const StudentMenu = () => {
             <span>My Selected Class</span>
           </li>
         </Link>
-        <li className="flex items-center text-lg mt-4 mx-auto gap-1 justify-center">
-          <MdOutlineSell /> <span>My Enrolled Class</span>
-        </li>
+        <Link to="/dashboard/my-enrolled-class">
+          <li className="flex items-center text-lg mt-4 mx-auto gap-1 justify-center">
+            <MdOutlineSell /> <span>My Enrolled Class</span>
+          </li>
+        </Link>
       </ul>
     </div>
   );

@@ -13,7 +13,7 @@ const Classes = () => {
   const approvedClass = allClasses.filter(
     (classes) => classes.status === "Approved"
     );
-    console.log(approvedClass);
+    // console.log(approvedClass);
   return (
     <div>
       <h1 className="text-3xl text-center my-4">All Classes</h1>

@@ -11,7 +11,8 @@ import { saveUserInfo } from "../../../API/auth";
 const Register = () => {
   const [seePassword, setSeePassword] = useState(false);
   const [confirmError, setConfirmError] = useState("");
-  const { updateUser, createUser, signInWithGoogle } = useContext(AuthContext);
+  const { updateUser, createUser, signInWithGoogle, setReload } =
+    useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -38,7 +39,8 @@ const Register = () => {
         console.log(result.user);
         updateUser(data.name, data.photoURL).then(() => {
           saveUserInfo(result?.user);
-          navigate(from, {replace: true});
+          setReload(true);
+          navigate(from, { replace: true });
           toast.success("Registration Successfull");
           reset();
         });
@@ -53,7 +55,7 @@ const Register = () => {
       .then((result) => {
         console.log(result?.user);
         saveUserInfo(result?.user);
-        navigate(from, {replace: true});
+        navigate(from, { replace: true });
         toast.success("Registration Successfull");
       })
       .catch((error) => {
@@ -195,7 +197,7 @@ const Register = () => {
           <input
             type="submit"
             value="Register"
-            className="my-btn-primary w-full"
+            className="my-btn-primary w-full cursor-pointer"
           />
           <p className="text-sm text-center pt-1">
             Already have an account?{" "}

@@ -12,7 +12,7 @@ const Instructors = () => {
       return res.data;
     },
   });
-  console.log(instructors);
+  // console.log(instructors);
   return (
     <div className="my-8 ">
       <h1 className="text-center py-2 text-4xl font-bold tracking-wider">Our Instructors</h1>

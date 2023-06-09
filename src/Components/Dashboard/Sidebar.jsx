@@ -95,7 +95,7 @@ const Sidebar = () => {
               </li>
               <li>
                 <NavLink
-                  to="/instructor"
+                  to="/instructors"
                   className="hover:text-neutral-600 flex items-center text-lg mt-4 mx-auto gap-1 justify-center transition"
                 >
                   <GiTeacher /> <span>Instructors</span>
@@ -164,7 +164,7 @@ const Sidebar = () => {
               </li>
               <li>
                 <NavLink
-                  to="/instructor"
+                  to="/instructors"
                   className="hover:text-neutral-600 flex items-center text-lg mt-4 mx-auto gap-1 justify-center transition"
                 >
                   <GiTeacher /> <span>Instructors</span>

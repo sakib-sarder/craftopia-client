@@ -11,6 +11,8 @@ import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers";
 import Classes from "../Pages/Classes/Classes";
 import Instructors from "../Pages/Instructors/Instructors";
 import ManageClasses from "../Pages/Dashboard/Admin/ManageClasses";
+import DashboardHome from "../Components/Dashboard/DashboardHome";
+import MySelectedClass from "../Pages/Dashboard/Student/MySelectedClass";
 
 const router = createBrowserRouter([
   {
@@ -36,7 +38,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/instructors",
-        element: <Instructors/>
+        element: <Instructors />,
       },
     ],
   },
@@ -45,6 +47,10 @@ const router = createBrowserRouter([
     element: <Dashboard />,
     errorElement: <ErrorPage />,
     children: [
+      {
+        path: "/dashboard",
+        element: <DashboardHome />,
+      },
       {
         path: "/dashboard/add-a-class",
         element: <AddAClass />,
@@ -59,8 +65,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/manage-classes",
-        element: <ManageClasses/>
-      }
+        element: <ManageClasses />,
+      },
+      {
+        path: "/dashboard/my-selected-class",
+        element: <MySelectedClass />,
+      },
     ],
   },
 ]);

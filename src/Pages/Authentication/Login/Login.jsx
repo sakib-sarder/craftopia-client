@@ -3,7 +3,7 @@ import animation from "../../../assets/animation/login-animation.json";
 import googleLogo from "../../../assets/google.png";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { toast } from "react-hot-toast";
 import { saveUserInfo } from "../../../API/auth";
@@ -11,6 +11,9 @@ import { saveUserInfo } from "../../../API/auth";
 const Login = () => {
   const [seePassword, setSeePassword] = useState(false);
   const { logInWithEmilPassword, signInWithGoogle } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
 
   const {
     register,
@@ -21,6 +24,7 @@ const Login = () => {
     console.log(data);
     logInWithEmilPassword(data.email, data.password)
       .then((result) => {
+        navigate(from, {replace:true})
         toast.success(`Welcome Back ${result?.user?.displayName}`);
       })
       .catch((error) => toast.error(error.message));
@@ -30,6 +34,7 @@ const Login = () => {
     signInWithGoogle()
       .then((result) => {
         saveUserInfo(result?.user);
+        navigate(from, {replace: true})
         toast.success(`Welcome ${result?.user?.displayName}`);
       })
       .catch((error) => toast.error(error.message));
@@ -91,7 +96,7 @@ const Login = () => {
           <input
             type="submit"
             value="Login"
-            className="my-btn-primary w-full"
+            className="my-btn-primary w-full cursor-pointer"
           />
           <p className="text-sm text-center pt-1">
             Don&apos;t have an account?{" "}

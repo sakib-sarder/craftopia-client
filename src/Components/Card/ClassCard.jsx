@@ -14,9 +14,12 @@ const ClassCard = ({ singleClass }) => {
       return res.data;
     },
   });
-  console.log(singleUser.role);
   return (
-    <div className="flex border flex-col justify-between shadow-md  md:hover:scale-105 transition rounded-md">
+    <div
+      className={`flex border flex-col justify-between shadow-md  md:hover:scale-105 transition rounded-md ${
+        singleClass.totalSeat === 0 ? "bg-red-300" : ""
+      }`}
+    >
       <figure className=" h-full">
         <img
           src={singleClass.classImage}
@@ -40,11 +43,17 @@ const ClassCard = ({ singleClass }) => {
       </div>
       <button
         className={`my-btn-primary ${
-          singleClass.totalSeat === 0 || singleUser?.role === "Admin" || singleUser?.role === "Instructor"
+          singleClass.totalSeat === 0 ||
+          singleUser?.role === "Admin" ||
+          singleUser?.role === "Instructor"
             ? "disabled opacity-50 cursor-not-allowed"
             : ""
         }`}
-        disabled={singleClass.totalSeat === 0 || singleUser?.role === "Admin" || singleUser?.role === "Instructor"}
+        disabled={
+          singleClass.totalSeat === 0 ||
+          singleUser?.role === "Admin" ||
+          singleUser?.role === "Instructor"
+        }
       >
         Select Now
       </button>

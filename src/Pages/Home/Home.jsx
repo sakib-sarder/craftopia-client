@@ -1,4 +1,5 @@
 import PopularClasses from "./PopularClasses";
+import PopularInstructors from "./PopularInstructors";
 import Slider from "./Slider";
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
     <div>
       <Slider />
       <PopularClasses />
+      <PopularInstructors/>
     </div>
   );
 };

@@ -3,7 +3,7 @@ import animation from "../../../assets/animation/register-animation.json";
 import googleLogo from "../../../assets/google.png";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { toast } from "react-hot-toast";
 import { saveUserInfo } from "../../../API/auth";
@@ -13,6 +13,8 @@ const Register = () => {
   const [confirmError, setConfirmError] = useState("");
   const { updateUser, createUser, signInWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const {
     register,
@@ -36,7 +38,7 @@ const Register = () => {
         console.log(result.user);
         updateUser(data.name, data.photoURL).then(() => {
           saveUserInfo(result?.user);
-          navigate("/");
+          navigate(from, {replace: true});
           toast.success("Registration Successfull");
           reset();
         });
@@ -51,7 +53,7 @@ const Register = () => {
       .then((result) => {
         console.log(result?.user);
         saveUserInfo(result?.user);
-        navigate("/");
+        navigate(from, {replace: true});
         toast.success("Registration Successfull");
       })
       .catch((error) => {

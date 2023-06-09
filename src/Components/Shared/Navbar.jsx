@@ -26,17 +26,22 @@ const Navbar = () => {
         <div className="hidden md:block">
           <ul className="text-lg font-semibold flex gap-3">
             <li className="hover:text-neutral-600">
-              <NavLink to="/">Home</NavLink>
+              <NavLink
+                to="/"
+                className={({ isActive }) => (isActive ? 'text-blue-500 transition' : '')}
+              >
+                Home
+              </NavLink>
             </li>
             <li className="hover:text-neutral-600">
-              <NavLink to="/instructors">Instructors</NavLink>
+              <NavLink to="/instructors" className={({ isActive }) => (isActive ? 'text-blue-500 transition' : '')}>Instructors</NavLink>
             </li>
             <li className="hover:text-neutral-600">
-              <NavLink to="/classes">Classes</NavLink>
+              <NavLink to="/classes" className={({ isActive }) => (isActive ? 'text-blue-500 transition' : '')}>Classes</NavLink>
             </li>
             {user && (
               <li className="hover:text-neutral-600">
-                <NavLink to="/dashboard">Dashboard</NavLink>
+                <NavLink to="/dashboard" className={({ isActive }) => (isActive ? 'text-blue-500 transition' : '')}>Dashboard</NavLink>
               </li>
             )}
           </ul>
@@ -50,7 +55,12 @@ const Navbar = () => {
               >
                 <span>Logout</span> <FaSignOutAlt />
               </button>
-              <img src={user?.photoURL} alt="profile" referrerPolicy="no-referrer" className="w-9 h-9 rounded-full"/>
+              <img
+                src={user?.photoURL}
+                alt="profile"
+                referrerPolicy="no-referrer"
+                className="w-9 h-9 rounded-full"
+              />
             </>
           ) : (
             <Link to="/login">
@@ -66,7 +76,7 @@ const Navbar = () => {
         </div>
       </div>
       {openMenu && (
-        <div className="fixed top-0 z-20 left-0 w-full">
+        <div className="fixed md:hidden top-0 z-20 left-0 w-full">
           <div className="bg-white">
             <MdOutlineClose
               onClick={() => setOpenMenu(!openMenu)}
@@ -74,18 +84,41 @@ const Navbar = () => {
             />
             <ul className="text-lg font-semibold shadow-md py-12 flex flex-col text-center gap-3">
               <li className="hover:text-neutral-600">
-                <NavLink to="/">Home</NavLink>
+                <NavLink to="/" className={({ isActive }) => (isActive ? 'text-blue-500 transition' : '')}>Home</NavLink>
               </li>
               <li className="hover:text-neutral-600">
-                <NavLink to="/instructor">Instructor</NavLink>
+                <NavLink to="/instructor" className={({ isActive }) => (isActive ? 'text-blue-500 transition' : '')}>Instructor</NavLink>
               </li>
               <li className="hover:text-neutral-600">
-                <NavLink to="/classes">Classes</NavLink>
+                <NavLink to="/classes" className={({ isActive }) => (isActive ? 'text-blue-500 transition' : '')}>Classes</NavLink>
               </li>
+              {user && (
               <li className="hover:text-neutral-600">
-                <NavLink to="/dashboard">Dashboard</NavLink>
+                <NavLink to="/dashboard" className={({ isActive }) => (isActive ? 'text-blue-500 transition' : '')}>Dashboard</NavLink>
               </li>
+              )}
+              {user ? (
+            <div className="flex justify-center gap-3">
+              <button
+                onClick={handleLogOut}
+                className="my-btn-primary flex items-center gap-1"
+              >
+                <span>Logout</span> <FaSignOutAlt />
+              </button>
+              <img
+                src={user?.photoURL}
+                alt="profile"
+                referrerPolicy="no-referrer"
+                className="w-9 h-9 rounded-full"
+              />
+            </div>
+          ) : (
+            <Link to="/login">
+              <button className="my-btn-primary">Login</button>
+            </Link>
+          )}
             </ul>
+            
           </div>
         </div>
       )}

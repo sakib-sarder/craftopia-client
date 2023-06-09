@@ -1,11 +1,16 @@
-// import axios from "axios"
+// update classes
 
-// export const  addClass = async (classData) => {
-//     axios
-//     .post(`${import.meta.env.VITE_API_URL}/classes`, {
-//       classData,
-//     })
-//     .then((res) => {
-//       console.log(res.data);
-//     });
-// }
+export const updateClass = async (id, status) => {
+  const response = await fetch(
+    `${import.meta.env.VITE_API_URL}/classes/status/${id}`,
+    {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ status }),
+    }
+  );
+  const data = await response.json();
+  return data;
+};

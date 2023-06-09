@@ -11,9 +11,11 @@ const AdminMenu = () => {
             <span>Manage Users</span>
           </li>
         </Link>
-        <li className="flex items-center text-lg mt-4 mx-auto gap-1 justify-center">
-          <MdOutlineManageHistory /> <span>Manage Classes</span>
-        </li>
+        <Link to="/dashboard/manage-classes">
+          <li className="flex items-center text-lg mt-4 mx-auto gap-1 justify-center">
+            <MdOutlineManageHistory /> <span>Manage Classes</span>
+          </li>
+        </Link>
       </ul>
     </div>
   );

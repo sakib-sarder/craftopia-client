@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 const ClassCard = ({ singleClass }) => {
-  const { classImage, className, instructorName, price, totalSeat } =
+  const { classImage, className, instructorName, price, totalSeat, enrolled } =
     singleClass;
   const { user } = useContext(AuthContext);
   const { data: singleUser = {} } = useQuery({
@@ -49,6 +49,7 @@ const ClassCard = ({ singleClass }) => {
         <div className="ps-2">
           <p className="font-semibold">Price: $ {price}</p>
           <p className="font-semibold">Available Seats: {totalSeat}</p>
+          <p className="font-semibold">Filled Seats: {enrolled}</p>
         </div>
       </div>
       <button

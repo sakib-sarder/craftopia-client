@@ -3,11 +3,10 @@ import axios from "axios";
 import ClassCard from "../../Components/Card/ClassCard";
 
 const PopularClasses = () => {
-  
   const { data: classes = [] } = useQuery({
     queryKey: ["classes"],
     queryFn: async () => {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/classes`);
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/sortedClass`);
       return res.data;
     },
   });

@@ -8,21 +8,51 @@ import image4 from "../../assets/SliderImage/slider-4.jpg";
 const Slider = () => {
   return (
     <div>
-      <Carousel /* interval={2000} infiniteLoop={true} autoPlay={true} */>
-        <div className=" lg:h-[80vh]">
-          <img src={image1} alt="" className="h-full" />
-        </div>
-        <div className="relative hero-overlay lg:h-[80vh]">
-          <img src={image2} alt="" className="h-full opacity-70 " />
-          <div className="absolute top-1/2   w-full text-center">
-            <h1 className="text-4xl">get your Dream </h1>
+      <Carousel
+        interval={2000}
+        infiniteLoop={true}
+        autoPlay={true}
+        transitionTime={500}
+      >
+        <div className=" lg:h-[80vh] bg-black">
+          <img src={image1} alt="" className="h-full opacity-60" />
+          <div className="absolute top-1/2 mx-auto ">
+            <h1 className="text-2xl md:-mt-12 -mt-16 text-neutral-100 font-semibold md:text-4xl">
+              Discover the art of Wood Craft. Join our class and learn to shape,
+              carve, and transform wood.
+            </h1>
+            <button className="my-btn-primary mt-2">Join Now</button>
           </div>
         </div>
-        <div className="lg:h-[80vh]">
-          <img src={image3} alt="" className="h-full" />
+        <div className="lg:h-[80vh] bg-black">
+          <img src={image2} alt="" className="h-full opacity-60" />
+          <div className="absolute top-1/2 mx-auto ">
+            <h1 className="text-2xl md:-mt-12 -mt-16 text-neutral-100 font-semibold md:text-4xl">
+              Experience the magic of Oil Painting. Join our class and learn to
+              create captivating artworks with vibrant colors.
+            </h1>
+            <button className="my-btn-primary mt-2">Join Now</button>
+          </div>
         </div>
-        <div className="lg:h-[80vh]">
-          <img src={image4} alt="" className="h-full" />
+        <div className="lg:h-[80vh]" style={{ backgroundColor: "black" }}>
+          <img src={image3} alt="" className="h-full opacity-60" />
+          <div className="absolute top-1/2 mx-auto ">
+            <h1 className="text-2xl md:-mt-12 -mt-16 text-neutral-100 font-semibold md:text-4xl">
+              Discover the art of Soil Craft. Join our class to create
+              captivating sculptures and designs using natural soil.
+            </h1>
+            <button className="my-btn-primary mt-2">Join Now</button>
+          </div>
+        </div>
+        <div className="lg:h-[80vh]" style={{ backgroundColor: "black" }}>
+          <img src={image4} alt="" className="h-full opacity-60" />
+          <div className="absolute top-1/2 mx-auto ">
+            <h1 className="text-2xl md:-mt-12 -mt-16 text-neutral-100 font-semibold md:text-4xl">
+              Ignite your creativity with our Drawing Class. Learn fundamental
+              techniques and unleash your artistic potential.
+            </h1>
+            <button className="my-btn-primary mt-2">Get Started</button>
+          </div>
         </div>
       </Carousel>
     </div>

@@ -31,16 +31,16 @@ const ManageClasses = () => {
     });
   };
   const handleModal = (classId) => {
-    setIsOpen(true)
-    setId(classId)
-    setIsOpen(true)
+    setIsOpen(true);
+    setId(classId);
+    setIsOpen(true);
     // console.log(classId);
   };
   //Modal Handler
   function closeModal() {
     setIsOpen(false);
   }
-  
+
   return (
     <div className="my-8">
       <h1 className="text-center">Manage Classes</h1>
@@ -76,19 +76,28 @@ const ManageClasses = () => {
                 <td>{singleClass?.instructorEmail}</td>
                 <td>{singleClass?.totalSeat}</td>
                 <td>{singleClass?.price}</td>
-                <td className="uppercase">{singleClass?.status}</td>
+                <td className="uppercase text-xs font-semibold "><span className="bg-blue-100 p-1 rounded-lg">{singleClass?.status}</span></td>
 
                 <td className="flex gap-2 justify-center">
                   <button
+                    disabled={singleClass.status !== "pending"}
                     onClick={() => handleApprove(singleClass._id)}
-                    className="px-2 py-1 rounded-md font-semibold border-emerald-300 border-2 hover:bg-emerald-100 transition"
+                    className={`px-2 py-1 rounded-md font-semibold border-emerald-300 border-2 hover:bg-emerald-100 transition ${
+                      singleClass.status !== "pending"
+                        ? "opacity-50 cursor-not-allowed"
+                        : ""
+                    }`}
                   >
                     Approve
                   </button>
                   <button
-                    disabled={singleClass.status === "Denied"}
+                    disabled={singleClass.status !== "pending"}
                     onClick={() => handleDeny(singleClass._id)}
-                    className="px-2 py-1 rounded-md font-semibold border-emerald-300 border-2 hover:bg-emerald-100 transition"
+                    className={`px-2 py-1 rounded-md font-semibold border-emerald-300 border-2 hover:bg-emerald-100 transition ${
+                      singleClass.status !== "pending"
+                        ? "opacity-50 cursor-not-allowed"
+                        : ""
+                    }`}
                   >
                     Deny
                   </button>

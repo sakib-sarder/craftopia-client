@@ -14,6 +14,7 @@ export const updateClass = async (id, status) => {
   const data = await response.json();
   return data;
 };
+
 // send feedback
 export const sendFeedback = async (id, feedback) => {
   const response = await fetch(

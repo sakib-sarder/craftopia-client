@@ -32,7 +32,7 @@ const Navbar = () => {
     }
   };
   return (
-    <div className="relative bg-white">
+    <div className="relative ">
       <div className="w-full px-3 md:px-8 lg:px-24 flex items-center justify-between py-3 shadow-md">
         <div>
           <Link>
@@ -175,7 +175,7 @@ const Navbar = () => {
               </li>
               <li className="hover:text-neutral-600">
                 <NavLink
-                  to="/instructor"
+                  to="/instructors"
                   className={({ isActive }) =>
                     isActive ? "text-blue-500 transition" : ""
                   }

@@ -54,7 +54,7 @@ const Footer = () => {
         </div>
       </div>
       <p className="text-center text-sm pt-3">
-        Copyright &copy; 2023 - All right reserved by ACME Industries Ltd
+        Copyright &copy; 2023 - All right reserved by Craftopia.
       </p>
     </footer>
   );

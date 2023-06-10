@@ -7,18 +7,18 @@ const ManageUsers = () => {
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await axiosSecure.get(`${import.meta.env.VITE_API_URL}/users`);
+      const res = await axiosSecure.get(
+        `${import.meta.env.VITE_API_URL}/users`
+      );
       return res.data;
     },
   });
 
   const handleMakeAdmin = (email) => {
     setAdmin(email, refetch);
-   
   };
   const handleMakeInstructor = (email) => {
     setInstructor(email, refetch);
-    
   };
   return (
     <div>
@@ -50,9 +50,17 @@ const ManageUsers = () => {
                   />
                 </td>
                 <td>{user?.name}</td>
-                <td>{user?.email.slice(0,16)}..</td>
+                <td>{user?.email.slice(0, 16)}..</td>
                 <td>
-                  {user.role ? <span>{user.role}</span> : <span>Student</span>}
+                  {user.role ? (
+                    <span className="bg-green-100 px-2 py-[1px] rounded-md font-semibold">
+                      {user.role}
+                    </span>
+                  ) : (
+                    <span className="bg-green-100 px-2 py-[1px] rounded-md font-semibold">
+                      Student
+                    </span>
+                  )}
                 </td>
                 <td className="flex gap-2 justify-center">
                   <button

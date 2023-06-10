@@ -5,7 +5,7 @@ import { AiTwotoneHome } from "react-icons/ai";
 import { GiTeacher } from "react-icons/gi";
 import { SiGoogleclassroom } from "react-icons/si";
 import { AuthContext } from "../../Provider/AuthProvider";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { HiLogout } from "react-icons/hi";
 import AdminMenu from "./AdminMenu";
 import InstructorMenu from "./InstructorMenu";
@@ -38,9 +38,9 @@ const Sidebar = () => {
   return (
     <>
       <div className="flex justify-between items-center p-2 md:hidden">
-        <div>
+        <Link to="/">
           <img src={logo} className="w-28" />
-        </div>
+        </Link>
         <div onClick={() => setOpenSideBar(!openSidebar)}>
           <RiBarChartHorizontalLine className="text-4xl cursor-pointer" />
         </div>
@@ -48,17 +48,23 @@ const Sidebar = () => {
       {openSidebar && (
         <div className="h-[100vh] bg-[#8ea1ee] w-3/6 md:hidden top-0 fixed z-40 ">
           <div>
-            <img
-              src={logo}
-              alt="logo"
-              className="w-40 mx-auto border-b-[1px] border-b-sky-700"
-            />
+            <Link to="/">
+              <img
+                src={logo}
+                alt="logo"
+                className="w-40 mx-auto border-b-[1px] border-b-sky-700"
+              />
+            </Link>
           </div>
           <div className="text-center py-2 mx-2 rounded-md mt-3 bg-[#AEE2FF]">
             <h1 className="text-xl font-semibold">Dashboard</h1>
           </div>
           <div className="my-6">
-            <img src={user?.photoURL} alt="" className="mx-auto rounded-lg w-28" />
+            <img
+              src={user?.photoURL}
+              alt=""
+              className="mx-auto rounded-lg w-28"
+            />
             <div className="text-center text-gray-100">
               <p className="text-sm">Name: {user?.displayName}</p>
               <p className="text-sm">
@@ -69,7 +75,9 @@ const Sidebar = () => {
                   {currentUser?.role}
                 </div>
               ) : (
-                <div className="uppercase py-1 mx-12 rounded-xl mt-1 tracking-wider bg-[#DD83FE] font-bold text-gray-900">Student</div>
+                <div className="uppercase py-1 mx-12 rounded-xl mt-1 tracking-wider bg-[#DD83FE] font-bold text-gray-900">
+                  Student
+                </div>
               )}
             </div>
           </div>
@@ -127,7 +135,11 @@ const Sidebar = () => {
             <h1 className="text-xl font-semibold">Dashboard</h1>
           </div>
           <div className="my-6 mx-auto">
-            <img src={user?.photoURL} alt="" className="mx-auto rounded-lg w-28" />
+            <img
+              src={user?.photoURL}
+              alt=""
+              className="mx-auto rounded-lg w-28"
+            />
             <div className="text-center text-gray-100">
               <p className="text-sm">Name: {user?.displayName}</p>
               <p className="text-sm">
@@ -138,7 +150,9 @@ const Sidebar = () => {
                   {currentUser?.role}
                 </div>
               ) : (
-                <div className="uppercase py-1 mx-12 rounded-xl mt-1 tracking-wider bg-[#DD83FE] font-bold text-gray-900">Student</div>
+                <div className="uppercase py-1 mx-12 rounded-xl mt-1 tracking-wider bg-[#DD83FE] font-bold text-gray-900">
+                  Student
+                </div>
               )}
             </div>
           </div>

@@ -6,13 +6,15 @@ const PopularClasses = () => {
   const { data: sortedClasses = [] } = useQuery({
     queryKey: ["sortedClass"],
     queryFn: async () => {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/sortedClass`);
+      const res = await axios.get(
+        `${import.meta.env.VITE_API_URL}/sortedClass`
+      );
       return res.data;
     },
   });
   const classes = sortedClasses.filter(
     (classes) => classes.status === "Approved"
-    );
+  );
   return (
     <div className="mt-12">
       <h1 className="text-center text-4xl -tracking-tighter font-bold">
@@ -20,12 +22,12 @@ const PopularClasses = () => {
       </h1>
       {classes && Array.isArray(classes) && classes.length > 0 ? (
         <div className="grid  md:grid-cols-3 lg:grid-cols-4 gap-6 my-4">
-          {classes.map((singleClass) => (
+          {classes.slice(0, 6).map((singleClass) => (
             <ClassCard key={singleClass._id} singleClass={singleClass} />
           ))}
         </div>
       ) : (
-        <p>no data found</p>
+        <p className="uppercase text-center my-12">no data found</p>
       )}
     </div>
   );

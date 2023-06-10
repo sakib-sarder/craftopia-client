@@ -35,7 +35,7 @@ const Navbar = () => {
     <div className="relative ">
       <div className="w-full px-3 md:px-8 lg:px-24 flex items-center justify-between py-3 shadow-md">
         <div>
-          <Link>
+          <Link to="/">
             <img src={logo} alt="Company Logo" className="w-40" />
           </Link>
         </div>
@@ -88,6 +88,7 @@ const Navbar = () => {
         <div className="flex items-center gap-2">
           {user ? (
             <>
+              <div className="md:flex gap-2 items-center hidden">
               <button
                 onClick={handleLogOut}
                 className="my-btn-primary flex items-center gap-1"
@@ -100,6 +101,7 @@ const Navbar = () => {
                 referrerPolicy="no-referrer"
                 className="w-9 h-9 rounded-full"
               />
+             </div>
               <label className="swap swap-rotate">
                 <input
                   type="checkbox"
@@ -180,7 +182,7 @@ const Navbar = () => {
                     isActive ? "text-blue-500 transition" : ""
                   }
                 >
-                  Instructor
+                  Instructors
                 </NavLink>
               </li>
               <li className="hover:text-neutral-600">

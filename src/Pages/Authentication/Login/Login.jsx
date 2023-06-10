@@ -11,6 +11,7 @@ import { saveUserInfo } from "../../../API/auth";
 const Login = () => {
   const [seePassword, setSeePassword] = useState(false);
   const { logInWithEmilPassword, signInWithGoogle } = useContext(AuthContext);
+  const [error, setError] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
@@ -24,17 +25,29 @@ const Login = () => {
     console.log(data);
     logInWithEmilPassword(data.email, data.password)
       .then((result) => {
-        navigate(from, {replace:true})
+        navigate(from, { replace: true });
         toast.success(`Welcome Back ${result?.user?.displayName}`);
       })
-      .catch((error) => toast.error(error.message));
+      .catch((error) => {
+        if (
+          error.code === "auth/wrong-password" ||
+          error.code === "auth/user-not-found"
+        ) {
+          setError("Invalid email or password");
+          return;
+        } else {
+          setError("");
+        }
+        
+      });
   };
+  console.log(error);
 
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
         saveUserInfo(result?.user);
-        navigate(from, {replace: true})
+        navigate(from, { replace: true });
         toast.success(`Welcome ${result?.user?.displayName}`);
       })
       .catch((error) => toast.error(error.message));
@@ -85,6 +98,7 @@ const Login = () => {
           {errors.password && (
             <span className="text-xs text-warning">Password is required</span>
           )}
+          {error && <span className="text-xs text-warning">{error}</span>}
           <div className="flex w-full items-center gap-2">
             <input
               onClick={() => setSeePassword(!seePassword)}

@@ -2,11 +2,14 @@ import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const ClassCard = ({ singleClass }) => {
   const { classImage, className, instructorName, price, totalSeat, enrolled } =
     singleClass;
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   const { data: singleUser = {} } = useQuery({
     queryKey: ["users", user?.email],
     queryFn: async () => {
@@ -18,19 +21,43 @@ const ClassCard = ({ singleClass }) => {
   });
   //
   const handleSelect = (selectedClass) => {
-    selectedClass.studentEmail = user?.email;
-    selectedClass.selectedClassId = selectedClass._id;
-    delete singleClass._id;
-    console.log(selectedClass);
-    fetch(`${import.meta.env.VITE_API_URL}/selectedClasses`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(selectedClass),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+    // selectedClass.studentEmail = user?.email;
+    // selectedClass.selectedClassId = selectedClass._id;
+    // delete singleClass._id;
+    // console.log(selectedClass);
+    // fetch(`${import.meta.env.VITE_API_URL}/selectedClasses`, {
+    //   method: "POST",
+    //   headers: {
+    //     "content-type": "application/json",
+    //   },
+    //   body: JSON.stringify(selectedClass),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => console.log(data));
+    if (user) {
+      selectedClass.studentEmail = user?.email;
+      selectedClass.selectedClassId = selectedClass._id;
+      delete singleClass._id;
+      console.log(selectedClass);
+      fetch(`${import.meta.env.VITE_API_URL}/selectedClasses`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(selectedClass),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.insertedId) {
+            toast.success("Select Successfull");
+            navigate("/dashboard/my-selected-class")
+          }
+        });
+    } else {
+      toast.success("Please Login Before Select");
+      navigate("/login");
+    }
   };
   return (
     <div

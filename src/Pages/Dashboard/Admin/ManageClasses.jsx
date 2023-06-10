@@ -1,18 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { updateClass } from "../../../API/class";
 import FeedbackModal from "../../../Components/Modal/FeedbackModal";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const ManageClasses = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [axiosSecure] = useAxiosSecure();
   const [id, setId] = useState("");
   // Fetch Data
   const { data: classes = [], refetch } = useQuery({
     queryKey: ["classes"],
     queryFn: async () => {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/classes`);
+      const res = await axiosSecure.get(
+        `${import.meta.env.VITE_API_URL}/admin/classes`
+      );
       return res.data;
     },
   });
@@ -76,7 +79,11 @@ const ManageClasses = () => {
                 <td>{singleClass?.instructorEmail}</td>
                 <td>{singleClass?.totalSeat}</td>
                 <td>{singleClass?.price}</td>
-                <td className="uppercase text-xs font-semibold "><span className="bg-blue-100 p-1 rounded-lg">{singleClass?.status}</span></td>
+                <td className="uppercase text-xs font-semibold ">
+                  <span className="bg-blue-100 p-1 rounded-lg">
+                    {singleClass?.status}
+                  </span>
+                </td>
 
                 <td className="flex gap-2 justify-center">
                   <button

@@ -15,6 +15,7 @@ import DashboardHome from "../Components/Dashboard/DashboardHome";
 import MySelectedClass from "../Pages/Dashboard/Student/MySelectedClass";
 import MyEnrolledClasses from "../Pages/Dashboard/Student/MyEnrolledClasses";
 import PrivateRoute from "./PrivateRoute";
+import Payment from "../Pages/Dashboard/Student/Payment";
 
 const router = createBrowserRouter([
   {
@@ -81,6 +82,10 @@ const router = createBrowserRouter([
         path: "/dashboard/my-enrolled-class",
         element: <MyEnrolledClasses />,
       },
+      {
+        path: "/dashboard/payment/:id",
+        element: <Payment/>
+      }
     ],
   },
 ]);

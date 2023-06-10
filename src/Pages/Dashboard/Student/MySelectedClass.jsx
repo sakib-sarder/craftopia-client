@@ -6,17 +6,18 @@ import { FaTrashAlt } from "react-icons/fa";
 import { toast } from "react-hot-toast";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
+import { MdPayments } from "react-icons/md";
 
 const MySelectedClass = () => {
   const { user, loading } = useContext(AuthContext);
   const [axiosSecure] = useAxiosSecure();
-  console.log(user?.email);
+
   const { data: MySelectedClasses = [], refetch } = useQuery({
     queryKey: ["selectedClasses", user?.email],
     enabled: !loading,
     queryFn: async () => {
       const res = await axiosSecure.get(`/selectedClasses/${user?.email}`);
-      console.log("axios secure", res.data);
       return res.data;
     },
   });
@@ -47,6 +48,8 @@ const MySelectedClass = () => {
       }
     });
   };
+
+  
 
   return (
     <div>
@@ -86,9 +89,13 @@ const MySelectedClass = () => {
                   </button>
                 </td>
                 <td>
-                  <button className="text-lg flex items-center justify-center gap-[2px] px-2 py-1 mx-auto text-blue-500 rounded-md border-primary border-[1px] hover:bg-blue-100 transition font-semibold">
-                    <FaTrashAlt /> <span>Pay</span>
-                  </button>
+                  <Link to={`/dashboard/payment/${selectedClass._id}`}>
+                    <button
+                      className="text-lg flex items-center justify-center gap-[2px] px-2 py-1 mx-auto text-blue-500 rounded-md border-primary border-[1px] hover:bg-blue-100 transition font-semibold"
+                    >
+                      <MdPayments /> <span>Pay</span>
+                    </button>
+                  </Link>
                 </td>
               </tr>
             ))}

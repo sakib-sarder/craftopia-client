@@ -1,19 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import UpdateModal from "../../../Components/Modal/UpdateModal";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const MyClasses = () => {
   const { user } = useContext(AuthContext);
+  const [axiosSecure] = useAxiosSecure();
   const [isOpen, setIsOpen] = useState(false);
   const [id, setId] = useState("");
   const [updateClass, setUpdateClass] = useState({});
 
-  const { data: myClasses = [] } = useQuery({
+  const { data: myClasses = [], refetch } = useQuery({
     queryKey: ["classes", user?.email],
     queryFn: async () => {
-      const res = await axios.get(
+      const res = await axiosSecure.get(
         `${import.meta.env.VITE_API_URL}/classes/${user?.email}`
       );
       return res.data;
@@ -80,6 +81,7 @@ const MyClasses = () => {
           </h1>
         )}
         <UpdateModal
+          refetch={refetch}
           isOpen={isOpen}
           id={id}
           closeModal={closeModal}

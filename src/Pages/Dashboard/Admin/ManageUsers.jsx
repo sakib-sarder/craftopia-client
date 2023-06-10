@@ -1,23 +1,24 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { setAdmin, setInstructor } from "../../../API/auth";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const ManageUsers = () => {
+  const [axiosSecure] = useAxiosSecure();
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/users`);
+      const res = await axiosSecure.get(`${import.meta.env.VITE_API_URL}/users`);
       return res.data;
     },
   });
 
   const handleMakeAdmin = (email) => {
     setAdmin(email, refetch);
-    // refetch();
+   
   };
   const handleMakeInstructor = (email) => {
     setInstructor(email, refetch);
-    // refetch();
+    
   };
   return (
     <div>

@@ -1,8 +1,29 @@
 import { Dialog, Transition } from "@headlessui/react";
+import axios from "axios";
 // import axios from "axios";
 import { Fragment } from "react";
-const UpdateModal = ({ isOpen, closeModal, updateClass }) => {
+import { toast } from "react-hot-toast";
+const UpdateModal = ({ isOpen, closeModal, updateClass, refetch }) => {
   console.log(updateClass);
+  const handleUpdate = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const className = form.className.value;
+    const photoURL = form.photoURL.value;
+    const totalSeat = parseInt(form.totalSeat.value);
+    const price = parseFloat(form.price.value);
+    const updateInfo = { className, photoURL, totalSeat, price };
+    axios
+      .patch(`${import.meta.env.VITE_API_URL}/class/${updateClass._id}`, {
+        updateInfo,
+      })
+      .then((res) => {
+        console.log(res.data);
+        toast.success("Successfully updated")
+        closeModal()
+        refetch()
+      });
+  };
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative  z-10" onClose={closeModal}>
@@ -34,11 +55,11 @@ const UpdateModal = ({ isOpen, closeModal, updateClass }) => {
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900"
                 >
-                  Update ! 
+                  Update !
                 </Dialog.Title>
                 <div className="mt-2">
                   <form
-                    // onSubmit={handleAddClass}
+                    onSubmit={handleUpdate}
                     className="w-full  bg-[#ACBCFF] border p-4 rounded-md shadow-lg"
                   >
                     <h1 className="text-3xl text-center mb-3 font-bold">
@@ -70,6 +91,7 @@ const UpdateModal = ({ isOpen, closeModal, updateClass }) => {
                             <input
                               className="w-full px-4 py-3 text-gray-800 border border-[#B799FF] focus:outline-lime-300 rounded-md "
                               type="url"
+                              name="photoURL"
                               defaultValue={updateClass.classImage}
                               placeholder="Photo URL"
                             />

@@ -3,10 +3,9 @@ import axios from "axios";
 import { Fragment, useState } from "react";
 const FeedbackModal = ({ isOpen, closeModal, id }) => {
   const [feedback, setFeedback] = useState("");
-  console.log(id);
+
 
   const handleSendFeedback = () => {
-    console.log(feedback);
     axios
       .patch(`${import.meta.env.VITE_API_URL}/classes/feedback/${id}`, {
         feedback,

@@ -1,10 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import UpdateModal from "../../../Components/Modal/UpdateModal";
 
 const MyClasses = () => {
   const { user } = useContext(AuthContext);
+  const [isOpen, setIsOpen] = useState(false);
+  const [id, setId] = useState("");
+  const [updateClass, setUpdateClass] = useState({});
+
   const { data: myClasses = [] } = useQuery({
     queryKey: ["classes", user?.email],
     queryFn: async () => {
@@ -14,6 +19,17 @@ const MyClasses = () => {
       return res.data;
     },
   });
+
+  const handleModal = (singleClass) => {
+    setId(singleClass._id);
+    setIsOpen(true);
+    setUpdateClass(singleClass);
+  };
+
+  //Modal Handler
+  function closeModal() {
+    setIsOpen(false);
+  }
   return (
     <div>
       <h1 className="text-center text-4xl tracking-wide font-bold pt-4">
@@ -34,28 +50,41 @@ const MyClasses = () => {
           </thead>
           <tbody>
             {myClasses.map((singleClass) => (
-                <tr key={singleClass._id}>
+              <tr key={singleClass._id}>
                 <td>{singleClass?.className}</td>
                 <td>
                   <img
                     src={singleClass?.classImage}
                     className="w-20 rounded-md shadow-md mx-auto"
-                    />
+                  />
                 </td>
                 <td>{singleClass?.instructorName}</td>
                 <td>{singleClass?.feedback ? singleClass?.feedback : ""}</td>
                 <td>{singleClass?.enrolled}</td>
                 <td>{singleClass?.status}</td>
                 <td>
-                  <button className="px-2 py-1 rounded-md font-semibold border-emerald-300 border-2 hover:bg-emerald-100 transition">
+                  <button
+                    onClick={() => handleModal(singleClass)}
+                    className="px-2 py-1 rounded-md font-semibold border-emerald-300 border-2 hover:bg-emerald-100 transition"
+                  >
                     Update
                   </button>
                 </td>
               </tr>
             ))}
           </tbody>
-              </table>
-      {!myClasses.length>0 && <h1 className="text-center mt-7 text-lg font-semibold">No Data Found</h1>}
+        </table>
+        {!myClasses.length > 0 && (
+          <h1 className="text-center mt-7 text-lg font-semibold">
+            No Data Found
+          </h1>
+        )}
+        <UpdateModal
+          isOpen={isOpen}
+          id={id}
+          closeModal={closeModal}
+          updateClass={updateClass}
+        />
       </div>
     </div>
   );

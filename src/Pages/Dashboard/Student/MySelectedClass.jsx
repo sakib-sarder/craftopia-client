@@ -5,28 +5,30 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 import { FaTrashAlt } from "react-icons/fa";
 import { toast } from "react-hot-toast";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const MySelectedClass = () => {
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
+  const [axiosSecure] = useAxiosSecure();
   console.log(user?.email);
   const { data: MySelectedClasses = [], refetch } = useQuery({
-    queryKey: ["MySelectedClasses", user?.email],
+    queryKey: ["selectedClasses", user?.email],
+    enabled: !loading,
     queryFn: async () => {
-      const res = await axios.get(
-        `${import.meta.env.VITE_API_URL}/selectedClasses/${user?.email}`
-      );
+      const res = await axiosSecure.get(`/selectedClasses/${user?.email}`);
+      console.log("axios secure", res.data);
       return res.data;
     },
   });
   const handleDelete = (id) => {
     Swal.fire({
-      title: 'Are you sure?',
+      title: "Are you sure?",
       text: "You won't be able to revert this!",
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
         axios
@@ -45,7 +47,7 @@ const MySelectedClass = () => {
       }
     });
   };
-  
+
   return (
     <div>
       <h1 className="text-center my-4 text-4xl">My Selected Classes</h1>

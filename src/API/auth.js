@@ -34,7 +34,7 @@ export const setInstructor = (email, refetch) => {
     });
 };
 
-// set user role instructor
+// set user role Admin
 export const setAdmin = (email, refetch) => {
   const currentUser = {
     role: "Admin",

@@ -1,9 +1,22 @@
 import { Dialog, Transition } from "@headlessui/react";
+import axios from "axios";
 import { Fragment, useState } from "react";
-const FeedbackModal = ({isOpen, closeModal}) => {
+const FeedbackModal = ({ isOpen, closeModal, id }) => {
   const [feedback, setFeedback] = useState("");
-console.log(feedback);
-  
+  console.log(id);
+
+  const handleSendFeedback = () => {
+    console.log(feedback);
+    axios
+      .patch(`${import.meta.env.VITE_API_URL}/classes/feedback/${id}`, {
+        feedback,
+      })
+      .then((res) => {
+        console.log(res.data);
+        closeModal();
+      });
+  };
+
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -51,6 +64,7 @@ console.log(feedback);
 
                 <div className="mt-4 flex justify-between">
                   <button
+                    onClick={handleSendFeedback}
                     type="button"
                     className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                   >

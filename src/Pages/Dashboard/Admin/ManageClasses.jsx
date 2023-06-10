@@ -3,11 +3,13 @@ import axios from "axios";
 import { updateClass } from "../../../API/class";
 import FeedbackModal from "../../../Components/Modal/FeedbackModal";
 import { useState } from "react";
+import { toast } from "react-hot-toast";
 
 const ManageClasses = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [id, setId] = useState("");
   // Fetch Data
-  const { data: classes = [] } = useQuery({
+  const { data: classes = [], refetch } = useQuery({
     queryKey: ["classes"],
     queryFn: async () => {
       const res = await axios.get(`${import.meta.env.VITE_API_URL}/classes`);
@@ -17,20 +19,28 @@ const ManageClasses = () => {
   const handleApprove = (id) => {
     updateClass(id, "Approved").then((data) => {
       console.log(data);
+      toast.success("Class is Approved");
+      refetch();
     });
   };
-
-  // const handleFeedback = (id) => {
-    
-  // }
-
+  const handleDeny = (id) => {
+    updateClass(id, "Denied").then((data) => {
+      console.log(data);
+      toast.success("Class id Denied");
+      refetch();
+    });
+  };
+  const handleModal = (classId) => {
+    setIsOpen(true)
+    setId(classId)
+    setIsOpen(true)
+    // console.log(classId);
+  };
   //Modal Handler
   function closeModal() {
     setIsOpen(false);
   }
-  const openModal = () => {
-    setIsOpen(true);
-  };
+  
   return (
     <div className="my-8">
       <h1 className="text-center">Manage Classes</h1>
@@ -75,11 +85,15 @@ const ManageClasses = () => {
                   >
                     Approve
                   </button>
-                  <button className="px-2 py-1 rounded-md font-semibold border-emerald-300 border-2 hover:bg-emerald-100 transition">
+                  <button
+                    disabled={singleClass.status === "Denied"}
+                    onClick={() => handleDeny(singleClass._id)}
+                    className="px-2 py-1 rounded-md font-semibold border-emerald-300 border-2 hover:bg-emerald-100 transition"
+                  >
                     Deny
                   </button>
                   <button
-                    onClick={openModal}
+                    onClick={() => handleModal(singleClass._id)}
                     className="px-2 py-1 rounded-md font-semibold border-emerald-300 border-2 hover:bg-emerald-100 transition"
                   >
                     Send Feedback
@@ -90,9 +104,8 @@ const ManageClasses = () => {
           </tbody>
         </table>
       </div>
-
       {/* Modal */}
-     <FeedbackModal isOpen={isOpen} closeModal={closeModal}/>
+      <FeedbackModal isOpen={isOpen} id={id} closeModal={closeModal} />
     </div>
   );
 };

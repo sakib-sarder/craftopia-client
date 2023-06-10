@@ -6,7 +6,7 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 const MyClasses = () => {
   const { user } = useContext(AuthContext);
   const { data: myClasses = [] } = useQuery({
-    queryKey: ["myClasses", user?.email],
+    queryKey: ["classes", user?.email],
     queryFn: async () => {
       const res = await axios.get(
         `${import.meta.env.VITE_API_URL}/classes/${user?.email}`

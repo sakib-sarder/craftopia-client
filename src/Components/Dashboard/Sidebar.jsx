@@ -18,7 +18,7 @@ const Sidebar = () => {
   const [openSidebar, setOpenSideBar] = useState(false);
   const navigate = useNavigate();
   const { data: currentUser = {} } = useQuery({
-    queryKey: ["user", user?.email],
+    queryKey: ["users", user?.email],
     queryFn: async () => {
       const res = await axios.get(
         `${import.meta.env.VITE_API_URL}/users/${user?.email}`

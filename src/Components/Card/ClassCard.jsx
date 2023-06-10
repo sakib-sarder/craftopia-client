@@ -8,7 +8,7 @@ const ClassCard = ({ singleClass }) => {
     singleClass;
   const { user } = useContext(AuthContext);
   const { data: singleUser = {} } = useQuery({
-    queryKey: ["singleUser", user?.email],
+    queryKey: ["users", user?.email],
     queryFn: async () => {
       const res = await axios.get(
         `${import.meta.env.VITE_API_URL}/users/${user?.email}`
@@ -38,7 +38,7 @@ const ClassCard = ({ singleClass }) => {
         singleClass.totalSeat === 0 ? "bg-red-300 bg-opacity-25" : ""
       }`}
     >
-      <figure className=" h-full">
+      <figure className=" md:h-40 lg:h-52">
         <img src={classImage} alt="class photo" className="h-full w-full" />
       </figure>
       <div className="flex-grow flex-col h-full  space-y-2">

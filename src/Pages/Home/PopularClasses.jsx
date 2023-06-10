@@ -4,7 +4,7 @@ import ClassCard from "../../Components/Card/ClassCard";
 
 const PopularClasses = () => {
   const { data: sortedClasses = [] } = useQuery({
-    queryKey: ["sortedClasses"],
+    queryKey: ["sortedClass"],
     queryFn: async () => {
       const res = await axios.get(`${import.meta.env.VITE_API_URL}/sortedClass`);
       return res.data;

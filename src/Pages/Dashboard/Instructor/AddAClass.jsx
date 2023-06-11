@@ -1,4 +1,3 @@
-// import axios from "axios";
 import axios from "axios";
 import AddClassForm from "../../../Components/Dashboard/AddClassForm";
 import { toast } from "react-hot-toast";

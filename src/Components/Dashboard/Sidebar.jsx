@@ -92,47 +92,41 @@ const Sidebar = () => {
           <hr />
           <div>
             <ul className="text-gray-100">
-              <li>
-                <motion.li
-                  whileHover={{ scale: 1.25 }}
-                  whileTap={{ scale: 0.95 }}
+              <motion.li
+                whileHover={{ scale: 1.25 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <NavLink
+                  to="/"
+                  className="hover:text-neutral-600 flex items-center text-lg mt-4 mx-auto gap-1 justify-center transition"
                 >
-                  <NavLink
-                    to="/"
-                    className="hover:text-neutral-600 flex items-center text-lg mt-4 mx-auto gap-1 justify-center transition"
-                  >
-                    {" "}
-                    <AiTwotoneHome />
-                    <span>Home</span>{" "}
-                  </NavLink>
-                </motion.li>
-              </li>
-              <li>
-                <motion.li
-                  whileHover={{ scale: 1.25 }}
-                  whileTap={{ scale: 0.95 }}
+                  {" "}
+                  <AiTwotoneHome />
+                  <span>Home</span>{" "}
+                </NavLink>
+              </motion.li>
+              <motion.li
+                whileHover={{ scale: 1.25 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <NavLink
+                  to="/instructors"
+                  className="hover:text-neutral-600 flex items-center text-lg mt-4 mx-auto gap-1 justify-center transition"
                 >
-                  <NavLink
-                    to="/instructors"
-                    className="hover:text-neutral-600 flex items-center text-lg mt-4 mx-auto gap-1 justify-center transition"
-                  >
-                    <GiTeacher /> <span>Instructors</span>
-                  </NavLink>
-                </motion.li>
-              </li>
-              <li>
-                <motion.li
-                  whileHover={{ scale: 1.25 }}
-                  whileTap={{ scale: 0.95 }}
+                  <GiTeacher /> <span>Instructors</span>
+                </NavLink>
+              </motion.li>
+              <motion.li
+                whileHover={{ scale: 1.25 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <NavLink
+                  to="/classes"
+                  className="hover:text-neutral-600 transition flex items-center text-lg mt-4 mx-auto gap-1 justify-center"
                 >
-                  <NavLink
-                    to="/classes"
-                    className="hover:text-neutral-600 transition flex items-center text-lg mt-4 mx-auto gap-1 justify-center"
-                  >
-                    <SiGoogleclassroom /> <span>Classes</span>
-                  </NavLink>
-                </motion.li>
-              </li>
+                  <SiGoogleclassroom /> <span>Classes</span>
+                </NavLink>
+              </motion.li>
             </ul>
           </div>
           <hr className="my-4" />
@@ -182,47 +176,41 @@ const Sidebar = () => {
           <hr />
           <div>
             <ul className="text-gray-100">
-              <li>
-                <motion.li
-                  whileHover={{ scale: 1.25 }}
-                  whileTap={{ scale: 0.95 }}
+              <motion.li
+                whileHover={{ scale: 1.25 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <NavLink
+                  to="/"
+                  className="hover:text-neutral-600 flex items-center text-lg mt-4 mx-auto gap-1 justify-center transition"
                 >
-                  <NavLink
-                    to="/"
-                    className="hover:text-neutral-600 flex items-center text-lg mt-4 mx-auto gap-1 justify-center transition"
-                  >
-                    {" "}
-                    <AiTwotoneHome />
-                    <span>Home</span>{" "}
-                  </NavLink>
-                </motion.li>
-              </li>
-              <li>
-                <motion.li
-                  whileHover={{ scale: 1.25 }}
-                  whileTap={{ scale: 0.95 }}
+                  {" "}
+                  <AiTwotoneHome />
+                  <span>Home</span>{" "}
+                </NavLink>
+              </motion.li>
+              <motion.li
+                whileHover={{ scale: 1.25 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <NavLink
+                  to="/instructors"
+                  className="hover:text-neutral-600 flex items-center text-lg mt-4 mx-auto gap-1 justify-center transition"
                 >
-                  <NavLink
-                    to="/instructors"
-                    className="hover:text-neutral-600 flex items-center text-lg mt-4 mx-auto gap-1 justify-center transition"
-                  >
-                    <GiTeacher /> <span>Instructors</span>
-                  </NavLink>
-                </motion.li>
-              </li>
-              <li>
-                <motion.li
-                  whileHover={{ scale: 1.25 }}
-                  whileTap={{ scale: 0.95 }}
+                  <GiTeacher /> <span>Instructors</span>
+                </NavLink>
+              </motion.li>
+              <motion.li
+                whileHover={{ scale: 1.25 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <NavLink
+                  to="/classes"
+                  className="hover:text-neutral-600 transition flex items-center text-lg mt-4 mx-auto gap-1 justify-center"
                 >
-                  <NavLink
-                    to="/classes"
-                    className="hover:text-neutral-600 transition flex items-center text-lg mt-4 mx-auto gap-1 justify-center"
-                  >
-                    <SiGoogleclassroom /> <span>Classes</span>
-                  </NavLink>
-                </motion.li>
-              </li>
+                  <SiGoogleclassroom /> <span>Classes</span>
+                </NavLink>
+              </motion.li>
             </ul>
             <hr className="my-4" />
             <button

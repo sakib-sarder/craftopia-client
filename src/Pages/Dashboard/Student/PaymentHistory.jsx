@@ -17,7 +17,6 @@ const PaymentHistory = () => {
       return res.data;
     },
   });
-  console.log(PayHistory);
   return (
     <div className="my-6">
       <h1 className="heading-text ">Payments History</h1>
@@ -32,6 +31,7 @@ const PaymentHistory = () => {
               <th>Price</th>
               <th>Transaction Id</th>
               <th>Date</th>
+              <th>Time</th>
             </tr>
           </thead>
           <tbody>

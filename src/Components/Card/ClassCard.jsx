@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ClassCard = ({ singleClass }) => {
   const { classImage, className, instructorName, price, totalSeat, enrolled } =
@@ -25,7 +26,7 @@ const ClassCard = ({ singleClass }) => {
       selectedClass.studentEmail = user?.email;
       selectedClass.selectedClassId = selectedClass._id;
       delete singleClass._id;
-      console.log(selectedClass);
+      // console.log(selectedClass);
       fetch(`${import.meta.env.VITE_API_URL}/selectedClasses`, {
         method: "POST",
         headers: {
@@ -38,12 +39,25 @@ const ClassCard = ({ singleClass }) => {
           console.log(data);
           if (data.insertedId) {
             toast.success("Select Successfull");
-            navigate("/dashboard/my-selected-class")
+            navigate("/dashboard/my-selected-class");
           }
         });
     } else {
-      toast.success("Please Login Before Select");
-      navigate("/login");
+      // toast.success("Please Login Before Select");
+      // navigate("/login");
+      Swal.fire({
+        title: "Login Before Select !",
+        text: "Only verfied user can select classes.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Login Now",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login");
+        }
+      });
     }
   };
   return (

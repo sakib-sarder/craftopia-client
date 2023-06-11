@@ -41,7 +41,6 @@ const Login = () => {
         
       });
   };
-  console.log(error);
 
   const handleGoogleSignIn = () => {
     signInWithGoogle()

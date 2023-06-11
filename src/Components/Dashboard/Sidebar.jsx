@@ -225,12 +225,12 @@ const Sidebar = () => {
               </li>
             </ul>
             <hr className="my-4" />
-          <button
-            onClick={handleLogOut}
-            className="my-btn-primary mx-auto gap-2 flex items-center hover:scale-105 hover:text-black"
-          >
-            <span>Logout</span> <HiLogout />
-          </button>
+            <button
+              onClick={handleLogOut}
+              className="my-btn-primary mx-auto gap-2 flex items-center hover:scale-105 hover:text-black"
+            >
+              <span>Logout</span> <HiLogout />
+            </button>
           </div>
         </div>
       </div>

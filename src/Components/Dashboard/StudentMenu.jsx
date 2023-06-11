@@ -1,4 +1,4 @@
-import { MdOutlineSell } from "react-icons/md";
+import { MdOutlineSell, MdPayments } from "react-icons/md";
 import { AiOutlineSelect } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -25,7 +25,7 @@ const StudentMenu = () => {
         <motion.li whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
         <Link to="/dashboard/payment-history">
           <li className="flex items-center text-lg mt-4 hover:text-neutral-600 mx-auto gap-1 justify-center">
-            <MdOutlineSell /> <span>Payment History</span>
+            <MdPayments /> <span>Payment History</span>
           </li>
           </Link>
           </motion.li>

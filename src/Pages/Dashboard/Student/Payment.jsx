@@ -25,7 +25,8 @@ const Payment = () => {
     (selectedClass) => selectedClass._id === id
   );
   return (
-    <div className="md:ms-40 my-52 px-4 md:px-0">
+    <div className="md:ms-40 my-52 px-4 md:px-0 ">
+      <h1 className="text-2xl font-semibold tracking-wider">Pay Now </h1>
       <Elements stripe={stripePromise}>
         <PaymentForm paymentClass={paymentClass} />
       </Elements>

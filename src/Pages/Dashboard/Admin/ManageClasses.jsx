@@ -78,7 +78,7 @@ const ManageClasses = () => {
                 <td>{singleClass?.instructorName}</td>
                 <td>{singleClass?.instructorEmail}</td>
                 <td>{singleClass?.totalSeat}</td>
-                <td>{singleClass?.price}</td>
+                <td>$ {singleClass?.price}</td>
                 <td className="uppercase text-xs font-semibold ">
                   <span className="bg-blue-100 p-1 rounded-lg">
                     {singleClass?.status}

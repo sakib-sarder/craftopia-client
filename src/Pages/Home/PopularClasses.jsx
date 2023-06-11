@@ -18,7 +18,7 @@ const PopularClasses = () => {
         Popular Classes
       </h1>
       {sortedClasses && Array.isArray(sortedClasses) && sortedClasses.length > 0 ? (
-        <div className="grid  md:grid-cols-3 lg:grid-cols-4 gap-6 my-4">
+        <div className="grid  md:grid-cols-3 gap-6 my-4">
           {sortedClasses.map((singleClass) => (
             <ClassCard key={singleClass._id} singleClass={singleClass} />
           ))}

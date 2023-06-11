@@ -46,11 +46,11 @@ const ManageClasses = () => {
 
   return (
     <div className="my-8">
-      <h1 className="text-center">Manage Classes</h1>
-      <div className="overflow-x-auto ">
+      <h1 className="text-center text-4xl">Manage Classes</h1>
+      <div className="overflow-x-auto m-3 rounded-md shadow-lg">
         <table className="table text-center">
           {/* head */}
-          <thead>
+          <thead className="bg-[#E6FFFD]">
             <tr>
               <th>Serial</th>
               <th>Photo</th>
@@ -85,7 +85,7 @@ const ManageClasses = () => {
                   </span>
                 </td>
 
-                <td className="flex gap-2 justify-center">
+                <td className="flex gap-2  justify-center">
                   <button
                     disabled={singleClass.status !== "pending"}
                     onClick={() => handleApprove(singleClass._id)}

@@ -22,7 +22,7 @@ const PopularClasses = () => {
       </h1>
       {classes && Array.isArray(classes) && classes.length > 0 ? (
         <div className="grid  md:grid-cols-3 lg:grid-cols-4 gap-6 my-4">
-          {classes.slice(0, 6).map((singleClass) => (
+          {classes.map((singleClass) => (
             <ClassCard key={singleClass._id} singleClass={singleClass} />
           ))}
         </div>

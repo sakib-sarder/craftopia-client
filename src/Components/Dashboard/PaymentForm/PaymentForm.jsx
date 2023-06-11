@@ -5,15 +5,16 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const PaymentForm = ({ paymentClass }) => {
   const stripe = useStripe();
+  const navigate = useNavigate();
   const [axiosSecure] = useAxiosSecure();
   const elements = useElements();
   const { user } = useContext(AuthContext);
   const [cardError, setCardError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
-  
 
   useEffect(() => {
     if (paymentClass?.price) {
@@ -85,14 +86,28 @@ const PaymentForm = ({ paymentClass }) => {
           if (res.data.insertedId) {
             axios
               .patch(
-                `${import.meta.env.VITE_API_URL}/classes/${paymentClass._id}`
+                `${import.meta.env.VITE_API_URL}/classes/${
+                  paymentClass.selectedClassId
+                }`
               )
               .then((res) => {
                 console.log(res.data);
                 const successText = `Enrolled Successfull , TransactionId: ${paymentIntent.id}`;
                 toast.success(successText);
               })
-              .catch(err=>console.log(err))
+              .catch((err) => console.log(err));
+            axios
+              .delete(
+                `${import.meta.env.VITE_API_URL}/selectedClasses/${
+                  paymentClass._id
+                }`
+              )
+              .then((res) => {
+                if (res.data.deletedCount > 0) {
+                  navigate("/dashboard/payment-history");
+                }
+                console.log(res.data);
+              });
           }
         });
       }

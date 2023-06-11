@@ -25,10 +25,10 @@ const ManageUsers = () => {
       <h1 className="text-center py-2 text-4xl tracking-wider font-semibold">
         Manage Users
       </h1>
-      <div className="overflow-x-auto ">
+      <div className="overflow-x-auto m-3 rounded-md shadow-lg">
         <table className="table text-center">
           {/* head */}
-          <thead>
+          <thead className="bg-[#E6FFFD]">
             <tr>
               <th>Serial</th>
               <th>photo</th>

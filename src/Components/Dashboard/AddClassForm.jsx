@@ -66,14 +66,14 @@ const AddRoomForm = ({ handleAddClass }) => {
 
               <div className="space-y-1 text-sm w-full">
                 <label htmlFor="seat" className="block text-gray-600">
-                  Total seat
+                Available seats
                 </label>
                 <input
                   className="w-full px-4 py-3 text-gray-800 border border-[#B799FF] focus:outline-lime-300 rounded-md "
                   name="totalSeat"
                   id="seat"
                   type="number"
-                  placeholder="Total seat"
+                  placeholder="Available seats"
                   required
                 />
               </div>

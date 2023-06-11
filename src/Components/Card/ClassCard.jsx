@@ -21,19 +21,6 @@ const ClassCard = ({ singleClass }) => {
   });
   //
   const handleSelect = (selectedClass) => {
-    // selectedClass.studentEmail = user?.email;
-    // selectedClass.selectedClassId = selectedClass._id;
-    // delete singleClass._id;
-    // console.log(selectedClass);
-    // fetch(`${import.meta.env.VITE_API_URL}/selectedClasses`, {
-    //   method: "POST",
-    //   headers: {
-    //     "content-type": "application/json",
-    //   },
-    //   body: JSON.stringify(selectedClass),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => console.log(data));
     if (user) {
       selectedClass.studentEmail = user?.email;
       selectedClass.selectedClassId = selectedClass._id;

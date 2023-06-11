@@ -3,6 +3,8 @@ import "./PaymentForm.css";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import axios from "axios";
+import { toast } from "react-hot-toast";
 
 const PaymentForm = ({ paymentClass }) => {
   const stripe = useStripe();
@@ -11,7 +13,7 @@ const PaymentForm = ({ paymentClass }) => {
   const { user } = useContext(AuthContext);
   const [cardError, setCardError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
-  console.log(paymentClass);
+  
 
   useEffect(() => {
     if (paymentClass?.price) {
@@ -20,7 +22,6 @@ const PaymentForm = ({ paymentClass }) => {
           price: paymentClass?.price,
         })
         .then((res) => {
-          console.log(res.data.clientSecret);
           setClientSecret(res.data.clientSecret);
         });
     }
@@ -67,6 +68,35 @@ const PaymentForm = ({ paymentClass }) => {
           },
         },
       });
+    if (confirmError) {
+      console.log("[error]", confirmError);
+      setCardError(confirmError.message);
+    } else {
+      console.log("[paymentIntent]", paymentIntent);
+      if (paymentIntent.status === "succeeded") {
+        // Save payment info in DB
+        const paymentInfo = {
+          ...paymentClass,
+          transactionId: paymentIntent.id,
+          date: new Date(),
+        };
+        axiosSecure.post("/payments", paymentInfo).then((res) => {
+          console.log(res.data);
+          if (res.data.insertedId) {
+            axios
+              .patch(
+                `${import.meta.env.VITE_API_URL}/classes/${paymentClass._id}`
+              )
+              .then((res) => {
+                console.log(res.data);
+                const successText = `Enrolled Successfull , TransactionId: ${paymentIntent.id}`;
+                toast.success(successText);
+              })
+              .catch(err=>console.log(err))
+          }
+        });
+      }
+    }
   };
 
   return (

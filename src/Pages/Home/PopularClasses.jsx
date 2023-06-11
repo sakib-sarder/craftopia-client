@@ -17,7 +17,7 @@ const PopularClasses = () => {
   );
   return (
     <div className="mt-12">
-      <h1 className="text-center text-4xl -tracking-tighter font-bold">
+      <h1 className="heading-text">
         Popular Classes
       </h1>
       {classes && Array.isArray(classes) && classes.length > 0 ? (

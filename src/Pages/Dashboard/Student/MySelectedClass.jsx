@@ -48,12 +48,9 @@ const MySelectedClass = () => {
       }
     });
   };
-
-  
-
   return (
-    <div>
-      <h1 className="text-center my-4 text-4xl">My Selected Classes</h1>
+    <div className="my-6">
+      <h1 className="heading-text ">My Selected Classes</h1>
       <div className="overflow-x-auto rounded-md m-4 shadow-lg">
         <table className="table text-center">
           {/* head */}

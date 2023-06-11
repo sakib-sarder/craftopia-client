@@ -12,6 +12,7 @@ import InstructorMenu from "./InstructorMenu";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import StudentMenu from "./StudentMenu";
+import { motion } from "framer-motion";
 
 const Sidebar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -42,7 +43,7 @@ const Sidebar = () => {
           <img src={logo} className="w-28" />
         </Link>
         <div onClick={() => setOpenSideBar(!openSidebar)}>
-          <RiBarChartHorizontalLine className="text-4xl cursor-pointer" />
+          <RiBarChartHorizontalLine className="text-4xl hover:scale-110 transition cursor-pointer" />
         </div>
       </div>
       {openSidebar && (
@@ -92,37 +93,52 @@ const Sidebar = () => {
           <div>
             <ul className="text-gray-100">
               <li>
-                <NavLink
-                  to="/"
-                  className="hover:text-neutral-600 flex items-center text-lg mt-4 mx-auto gap-1 justify-center transition"
+                <motion.li
+                  whileHover={{ scale: 1.25 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  {" "}
-                  <AiTwotoneHome />
-                  <span>Home</span>{" "}
-                </NavLink>
+                  <NavLink
+                    to="/"
+                    className="hover:text-neutral-600 flex items-center text-lg mt-4 mx-auto gap-1 justify-center transition"
+                  >
+                    {" "}
+                    <AiTwotoneHome />
+                    <span>Home</span>{" "}
+                  </NavLink>
+                </motion.li>
               </li>
               <li>
-                <NavLink
-                  to="/instructors"
-                  className="hover:text-neutral-600 flex items-center text-lg mt-4 mx-auto gap-1 justify-center transition"
+                <motion.li
+                  whileHover={{ scale: 1.25 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <GiTeacher /> <span>Instructors</span>
-                </NavLink>
+                  <NavLink
+                    to="/instructors"
+                    className="hover:text-neutral-600 flex items-center text-lg mt-4 mx-auto gap-1 justify-center transition"
+                  >
+                    <GiTeacher /> <span>Instructors</span>
+                  </NavLink>
+                </motion.li>
               </li>
               <li>
-                <NavLink
-                  to="/classes"
-                  className="hover:text-neutral-600 transition flex items-center text-lg mt-4 mx-auto gap-1 justify-center"
+                <motion.li
+                  whileHover={{ scale: 1.25 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <SiGoogleclassroom /> <span>Classes</span>
-                </NavLink>
+                  <NavLink
+                    to="/classes"
+                    className="hover:text-neutral-600 transition flex items-center text-lg mt-4 mx-auto gap-1 justify-center"
+                  >
+                    <SiGoogleclassroom /> <span>Classes</span>
+                  </NavLink>
+                </motion.li>
               </li>
             </ul>
           </div>
           <hr className="my-4" />
           <button
             onClick={handleLogOut}
-            className="my-btn-primary mx-auto gap-2 flex items-center"
+            className="my-btn-primary mx-auto gap-2 flex items-center hover:scale-105 hover:text-black"
           >
             <span>Logout</span> <HiLogout />
           </button>
@@ -167,32 +183,54 @@ const Sidebar = () => {
           <div>
             <ul className="text-gray-100">
               <li>
-                <NavLink
-                  to="/"
-                  className="hover:text-neutral-600 flex items-center text-lg mt-4 mx-auto gap-1 justify-center transition"
+                <motion.li
+                  whileHover={{ scale: 1.25 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  {" "}
-                  <AiTwotoneHome />
-                  <span>Home</span>{" "}
-                </NavLink>
+                  <NavLink
+                    to="/"
+                    className="hover:text-neutral-600 flex items-center text-lg mt-4 mx-auto gap-1 justify-center transition"
+                  >
+                    {" "}
+                    <AiTwotoneHome />
+                    <span>Home</span>{" "}
+                  </NavLink>
+                </motion.li>
               </li>
               <li>
-                <NavLink
-                  to="/instructors"
-                  className="hover:text-neutral-600 flex items-center text-lg mt-4 mx-auto gap-1 justify-center transition"
+                <motion.li
+                  whileHover={{ scale: 1.25 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <GiTeacher /> <span>Instructors</span>
-                </NavLink>
+                  <NavLink
+                    to="/instructors"
+                    className="hover:text-neutral-600 flex items-center text-lg mt-4 mx-auto gap-1 justify-center transition"
+                  >
+                    <GiTeacher /> <span>Instructors</span>
+                  </NavLink>
+                </motion.li>
               </li>
               <li>
-                <NavLink
-                  to="/classes"
-                  className="hover:text-neutral-600 transition flex items-center text-lg mt-4 mx-auto gap-1 justify-center"
+                <motion.li
+                  whileHover={{ scale: 1.25 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <SiGoogleclassroom /> <span>Classes</span>
-                </NavLink>
+                  <NavLink
+                    to="/classes"
+                    className="hover:text-neutral-600 transition flex items-center text-lg mt-4 mx-auto gap-1 justify-center"
+                  >
+                    <SiGoogleclassroom /> <span>Classes</span>
+                  </NavLink>
+                </motion.li>
               </li>
             </ul>
+            <hr className="my-4" />
+          <button
+            onClick={handleLogOut}
+            className="my-btn-primary mx-auto gap-2 flex items-center hover:scale-105 hover:text-black"
+          >
+            <span>Logout</span> <HiLogout />
+          </button>
           </div>
         </div>
       </div>

@@ -45,8 +45,8 @@ const ManageClasses = () => {
   }
 
   return (
-    <div className="my-8">
-      <h1 className="text-center text-4xl">Manage Classes</h1>
+    <div className="my-6">
+      <h1 className="heading-text">Manage Classes</h1>
       <div className="overflow-x-auto m-3 rounded-md shadow-lg">
         <table className="table text-center">
           {/* head */}

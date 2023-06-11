@@ -21,8 +21,8 @@ const ManageUsers = () => {
     setInstructor(email, refetch);
   };
   return (
-    <div>
-      <h1 className="text-center py-2 text-4xl tracking-wider font-semibold">
+    <div className="my-6">
+      <h1 className="heading-text">
         Manage Users
       </h1>
       <div className="overflow-x-auto m-3 rounded-md shadow-lg">

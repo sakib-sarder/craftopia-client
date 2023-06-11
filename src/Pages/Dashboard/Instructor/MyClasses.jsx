@@ -32,10 +32,8 @@ const MyClasses = () => {
     setIsOpen(false);
   }
   return (
-    <div>
-      <h1 className="text-center text-4xl tracking-wide font-bold pt-4">
-        My Classes
-      </h1>
+    <div className="my-6">
+      <h1 className="heading-text">My Classes</h1>
       <div className="overflow-x-auto w-11/12 mx-auto py-8">
         <table className="text-center shadow-lg table z-10 ">
           <thead className="font-bold">

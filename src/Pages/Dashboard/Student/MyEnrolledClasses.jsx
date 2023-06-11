@@ -17,7 +17,7 @@ const MyEnrolledClasses = () => {
   console.log(enrolledClasses);
   return (
     <div className="m-4">
-      <h1 className="text-4xl text-center py-4">My Enrolled Classes</h1>
+      <h1 className="heading-text">My Enrolled Classes</h1>
       <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-4">
         {enrolledClasses.map((enrolledClass) => (
           <EnrolledClassCard

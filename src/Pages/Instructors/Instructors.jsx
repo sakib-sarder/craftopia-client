@@ -14,8 +14,8 @@ const Instructors = () => {
   });
   // console.log(instructors);
   return (
-    <div className="my-8 ">
-      <h1 className="text-center py-2 text-4xl font-bold tracking-wider">Our Instructors</h1>
+    <div className="my-6 ">
+      <h1 className="heading-text">Our Instructors</h1>
       <div className="grid gap-6 md:grid-cols-3 lg:grid-cols-4">
         {instructors.map((instructor) => (
           <InstructorsCard key={instructor._id} instructor={instructor} />

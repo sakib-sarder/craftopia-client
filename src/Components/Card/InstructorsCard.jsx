@@ -5,13 +5,13 @@ const InstructorsCard = ({ instructor }) => {
         <img
           src={instructor?.photo}
           alt="instructor image"
-          className="rounded-xl w-24"
+          className="rounded-xl h-24 w-24"
         />
       </figure>
       <div className="card-body items-center text-center">
         <h2 className="card-title">{instructor.name}</h2>
         <p>
-          <span className="hover:underline ">{instructor.email}</span>
+          <span className="hover:underline">{instructor.email}</span>
         </p>
       </div>
     </div>

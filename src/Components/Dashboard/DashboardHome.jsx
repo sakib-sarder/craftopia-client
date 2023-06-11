@@ -5,7 +5,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 const DashboardHome = () => {
   const { user } = useContext(AuthContext);
   return (
-    <div className="flex items-center flex-col-reverse md:flex-row ">
+    <div className="flex items-center flex-col-reverse md:flex-row mt-6 md:mt-0 md:h-[100vh]">
       <div className="mx-auto   md:w-1/2">
         <Player autoplay loop src={animation}></Player>
       </div>

@@ -14,8 +14,8 @@ const PopularInstructors = () => {
   });
   console.log(instructors);
   return (
-    <div className="my-8">
-      <h1 className="text-center text-4xl">Popular Instructors</h1>
+    <div className="my-12">
+      <h1 className="heading-text ">Popular Instructors</h1>
       <div className="grid  md:grid-cols-3 grid-cols-2 gap-6 mt-6">
         {instructors.slice(0,6).map((instructor) => (
           <InstructorsCard key={instructor._id} instructor={instructor} />

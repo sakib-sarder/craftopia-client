@@ -19,9 +19,9 @@ const PaymentHistory = () => {
   });
   console.log(PayHistory);
   return (
-    <div className="m-4">
-      <h1 className="text-4xl my-3 text-center">Payments History</h1>
-      <div className="overflow-x-auto shadow-lg rounded-md">
+    <div className="my-6">
+      <h1 className="heading-text ">Payments History</h1>
+      <div className="overflow-x-auto shadow-lg m-3 rounded-md">
         <table className="table text-center">
           {/* head */}
           <thead className="bg-[#E6FFFD]">

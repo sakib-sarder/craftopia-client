@@ -1,12 +1,12 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 const firebaseConfig = {
-  apiKey: "AIzaSyBeff0oNlznYFhfPLcD2Bv4VpsRNSDXl4U",
-  authDomain: "craftopia-4e8ba.firebaseapp.com",
-  projectId: "craftopia-4e8ba",
-  storageBucket: "craftopia-4e8ba.appspot.com",
-  messagingSenderId: "803934292568",
-  appId: "1:803934292568:web:eb6862dec8407cbb25182d"
+  apiKey: import.meta.env.VITE_APIKEY,
+  authDomain: import.meta.env.VITE_AUTHDOMAIN,
+  projectId: import.meta.env.VITE_PROJECTID,
+  storageBucket: import.meta.env.VITE_STORAGEBUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGINGSENDERID,
+  appId: import.meta.env.VITE_APPID,
 };
 
 // Initialize Firebase

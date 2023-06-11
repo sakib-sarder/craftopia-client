@@ -10,15 +10,15 @@ const Classes = () => {
       return res.data;
     },
   });
-  const approvedClass = allClasses.filter(
-    (classes) => classes.status === "Approved"
-  );
+  // const approvedClass = allClasses.filter(
+  //   (classes) => classes.status === "Approved"
+  // );
   // console.log(approvedClass);
   return (
     <div className="mt-6">
       <h1 className="heading-text">All Classes</h1>
       <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-6 mb-6">
-        {approvedClass.map((singleClass) => (
+        {allClasses.map((singleClass) => (
           <ClassCard key={singleClass._id} singleClass={singleClass} />
         ))}
       </div>

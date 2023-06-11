@@ -12,17 +12,14 @@ const PopularClasses = () => {
       return res.data;
     },
   });
-  const classes = sortedClasses.filter(
-    (classes) => classes.status === "Approved"
-  );
   return (
     <div className="mt-12">
       <h1 className="heading-text">
         Popular Classes
       </h1>
-      {classes && Array.isArray(classes) && classes.length > 0 ? (
+      {sortedClasses && Array.isArray(sortedClasses) && sortedClasses.length > 0 ? (
         <div className="grid  md:grid-cols-3 lg:grid-cols-4 gap-6 my-4">
-          {classes.map((singleClass) => (
+          {sortedClasses.map((singleClass) => (
             <ClassCard key={singleClass._id} singleClass={singleClass} />
           ))}
         </div>

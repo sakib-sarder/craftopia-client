@@ -64,7 +64,7 @@ const Register = () => {
   };
 
   return (
-    <div className="md:flex items-center mt-8">
+    <div className="md:flex items-center mt-8 h-[90vh]">
       <div className="mx-auto w-2/4  md:w-1/2">
         <Player autoplay loop src={animation}></Player>
       </div>

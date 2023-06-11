@@ -53,7 +53,7 @@ const Login = () => {
       .catch((error) => toast.error(error.message));
   };
   return (
-    <div className="md:flex items-center h-[90vh]">
+    <div className="md:flex items-center h-[95vh]">
       <div className="mx-auto w-2/4  md:w-1/2">
         <Player autoplay loop src={animation}></Player>
       </div>

@@ -1,3 +1,4 @@
+import BecomeAnInstructor from "./BecomeAnInstructor";
 import PopularClasses from "./PopularClasses";
 import PopularInstructors from "./PopularInstructors";
 import Slider from "./Slider";
@@ -7,7 +8,8 @@ const Home = () => {
     <div>
       <Slider />
       <PopularClasses />
-      <PopularInstructors/>
+      <PopularInstructors />
+      <BecomeAnInstructor/>
     </div>
   );
 };

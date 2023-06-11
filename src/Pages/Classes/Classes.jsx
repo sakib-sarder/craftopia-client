@@ -10,10 +10,7 @@ const Classes = () => {
       return res.data;
     },
   });
-  // const approvedClass = allClasses.filter(
-  //   (classes) => classes.status === "Approved"
-  // );
-  // console.log(approvedClass);
+
   return (
     <div className="mt-6">
       <h1 className="heading-text">All Classes</h1>

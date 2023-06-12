@@ -64,7 +64,7 @@ const Sidebar = () => {
             <img
               src={user?.photoURL}
               alt=""
-              className="mx-auto rounded-lg w-28"
+              className="mx-auto rounded-lg h-28 w-28"
             />
             <div className="text-center text-gray-100">
               <p className="text-sm">Name: {user?.displayName}</p>
@@ -148,7 +148,7 @@ const Sidebar = () => {
             <img
               src={user?.photoURL}
               alt=""
-              className="mx-auto rounded-lg w-28"
+              className="mx-auto rounded-lg h-28 w-28"
             />
             <div className="text-center text-gray-100">
               <p className="text-sm">Name: {user?.displayName}</p>

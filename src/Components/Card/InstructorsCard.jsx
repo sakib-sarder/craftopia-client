@@ -11,6 +11,7 @@ const InstructorsCard = ({ instructor }) => {
       <div className="card-body items-center text-center">
         <h2 className="card-title">{instructor.name}</h2>
         <p>
+          Email:
           <span className="hover:underline">{instructor.email}</span>
         </p>
       </div>

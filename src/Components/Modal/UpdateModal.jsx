@@ -87,15 +87,16 @@ const UpdateModal = ({ isOpen, closeModal, updateClass, refetch }) => {
                         </div>
 
                         <div>
-                          <label>
+                          <label htmlFor="photoURL" className="text-sm text-gray-600 "> PhotoUrl
+                            </label>
                             <input
                               className="w-full px-4 py-3 text-gray-800 border border-[#B799FF] focus:outline-lime-300 rounded-md "
                               type="url"
-                              name="photoURL"
+                            name="photoURL"
+                            id="photoURL"
                               defaultValue={updateClass.classImage}
                               placeholder="Photo URL"
                             />
-                          </label>
                         </div>
                         <div className="flex justify-between gap-2">
                           <div className="space-y-1 text-sm w-full">

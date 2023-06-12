@@ -60,7 +60,7 @@ const MyClasses = () => {
                 <td>{singleClass?.instructorName}</td>
                 <td>{singleClass?.feedback ? singleClass?.feedback : ""}</td>
                 <td>{singleClass?.enrolled}</td>
-                <td>{singleClass?.status}</td>
+                <td ><span className="bg-blue-200 px-2 py-[1px] rounded-md font-semibold">{singleClass?.status}</span></td>
                 <td>
                   <button
                     onClick={() => handleModal(singleClass)}

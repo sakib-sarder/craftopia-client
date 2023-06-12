@@ -1,7 +1,7 @@
 ## Live Link
 Hosted in Firebase -> [Craftopia](https://craftopia-4e8ba.web.app/)
 
-# About Craftopia
+# Craftopia
 
 * ### A learning platform where student can enroll classes and instructors can publish their classes.
 
